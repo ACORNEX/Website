@@ -31,23 +31,6 @@
             text-align: center;
         }
 
-        #colorButton {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 20px; /* Add some space between the image and the button */
-        }
-
-        #exampleImage {
-            width: 200px; /* Adjust the width as needed */
-            height: auto;
-            display: block;
-            margin: 0 auto; /* Center the image */
-        }
-
         .animated-text {
             font-size: 2em;
             color: white;
@@ -70,6 +53,7 @@
         }
 
         .image-item {
+            position: relative;
             width: 100px; /* Adjust the size as needed */
             height: 100px; /* Adjust the size as needed */
             background-color: transparent;
@@ -86,14 +70,25 @@
             border-radius: 50%; /* Ensure the image itself is circular */
         }
 
-        .contact-section {
-            margin-top: 40px; /* Adjust spacing */
-            color: white;
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            cursor: pointer;
         }
 
-        .contact-email {
-            font-size: 1.2em;
-            margin-top: 10px;
+        .video-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: auto;
         }
     </style>
 </head>
@@ -101,12 +96,34 @@
     <canvas id="rainCanvas"></canvas>
     <div class="container">
         <h1 class="animated-text">After the Rain Games</h1>
-        <img src="example.jpg" alt="Example Image" id="exampleImage">
-        <button id="colorButton">Click Me</button>
         <div class="image-container">
-            <div class="image-item"><img src="Images/Skate.png" alt="Skate"></div>
-            <div class="image-item"><img src="Images/Syringe.png" alt="Syringe"></div>
-            <div class="image-item"><img src="Images/Turtle.png" alt="Turtle"></div>
+            <div class="image-item">
+                <img src="Images/Skate.png" alt="Skate">
+                <div class="video-overlay" id="skateVideo">
+                    <video class="video-item" controls>
+                        <source src="Videos/Skate.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="Images/Syringe.png" alt="Syringe">
+                <div class="video-overlay" id="syringeVideo">
+                    <video class="video-item" controls>
+                        <source src="Videos/syringe_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="Images/Turtle.png" alt="Turtle">
+                <div class="video-overlay" id="turtleVideo">
+                    <video class="video-item" controls>
+                        <source src="Videos/turtle_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
         </div>
         <div class="contact-section">
             <h2>Contact Me</h2>
@@ -115,85 +132,21 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('rainCanvas');
-            const ctx = canvas.getContext('2d');
-            const colorButton = document.getElementById('colorButton');
-            const images = document.querySelectorAll('.image-item img');
-            
-            let mouseX = 0;
-            let mouseY = 0;
+            const videos = document.querySelectorAll('.video-item');
+            const overlays = document.querySelectorAll('.video-overlay');
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
+            overlays.forEach(overlay => {
+                const video = overlay.querySelector('video');
 
-            document.addEventListener('mousemove', (event) => {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
-            });
-
-            function createRaindrop(x, y) {
-                return {
-                    x,
-                    y,
-                    speed: 2 + Math.random() * 3, // Adjusted speed range for slower rain
-                    radius: 2 + Math.random() * 2
-                };
-            }
-
-            const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
-
-            function updateRaindrops() {
-                raindrops.forEach(raindrop => {
-                    raindrop.y += raindrop.speed;
-                    if (raindrop.y > canvas.height) {
-                        raindrop.y = -raindrop.radius;
-                        raindrop.x = Math.random() * canvas.width;
-                    }
-                    
-                    const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
-                    if (dist < 100) {
-                        const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
-                        raindrop.x += Math.cos(angle) * 5;
-                        raindrop.y += Math.sin(angle) * 5;
-                    }
+                overlay.addEventListener('mouseenter', () => {
+                    video.currentTime = 0; // Start from the beginning each time
+                    video.play();
+                    overlay.style.display = 'block';
                 });
-            }
 
-            function drawRaindrops() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(174,194,224,0.5)';
-                raindrops.forEach(raindrop => {
-                    ctx.beginPath();
-                    ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            function animate() {
-                updateRaindrops();
-                drawRaindrops();
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-
-            let isGreen = false;
-            colorButton.addEventListener('click', () => {
-                isGreen = !isGreen;
-                colorButton.style.backgroundColor = isGreen ? 'green' : 'red';
-            });
-
-            images.forEach(image => {
-                image.addEventListener('mouseenter', () => {
-                    image.style.transform = 'scale(1.2)';
-                });
-                image.addEventListener('mouseleave', () => {
-                    image.style.transform = 'scale(1)';
+                overlay.addEventListener('mouseleave', () => {
+                    video.pause();
+                    overlay.style.display = 'none';
                 });
             });
         });
