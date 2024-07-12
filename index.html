@@ -63,19 +63,24 @@
             }
         }
 
-        .circle-container {
+        .image-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px; /* Space between the button and the circles */
+            margin-top: 20px; /* Space between the button and the images */
         }
 
-        .circle {
+        .image-item {
             width: 50px; /* Adjust the size as needed */
             height: 50px; /* Adjust the size as needed */
-            background-color: green;
-            border-radius: 50%;
-            margin: 0 10px; /* Space between the circles */
-            transition: background-color 0.3s; /* Smooth transition for color change */
+            background-color: transparent;
+            margin: 0 10px; /* Space between the images */
+            transition: transform 0.3s; /* Smooth transition for transform */
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -85,10 +90,10 @@
         <h1 class="animated-text">After the Rain Games</h1>
         <img src="example.jpg" alt="Example Image" id="exampleImage">
         <button id="colorButton">Click Me</button>
-        <div class="circle-container">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
+        <div class="image-container">
+            <div class="image-item"><img src="Images/Skate.png" alt="Skate"></div>
+            <div class="image-item"><img src="Images/Syringe.png" alt="Syringe"></div>
+            <div class="image-item"><img src="Images/Turtle.png" alt="Turtle"></div>
         </div>
     </div>
     <script>
@@ -96,7 +101,7 @@
             const canvas = document.getElementById('rainCanvas');
             const ctx = canvas.getContext('2d');
             const colorButton = document.getElementById('colorButton');
-            const circles = document.querySelectorAll('.circle');
+            const images = document.querySelectorAll('.image-item img');
             
             let mouseX = 0;
             let mouseY = 0;
@@ -166,12 +171,12 @@
                 colorButton.style.backgroundColor = isGreen ? 'green' : 'red';
             });
 
-            circles.forEach(circle => {
-                circle.addEventListener('mouseenter', () => {
-                    circle.style.backgroundColor = 'yellow';
+            images.forEach(image => {
+                image.addEventListener('mouseenter', () => {
+                    image.style.transform = 'scale(1.2)';
                 });
-                circle.addEventListener('mouseleave', () => {
-                    circle.style.backgroundColor = 'green';
+                image.addEventListener('mouseleave', () => {
+                    image.style.transform = 'scale(1)';
                 });
             });
         });
