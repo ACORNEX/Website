@@ -91,6 +91,16 @@
             width: 80%;
             height: auto;
         }
+
+        .contact-section {
+            margin-top: 20px;
+        }
+
+        .contact-email {
+            font-size: 1.2em;
+            color: white;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +113,7 @@
                 <div class="video-overlay" id="skateVideo">
                     <video class="video-item" controls>
                         <source src="Videos/Skate.mp4" type="video/mp4">
+                        <source src="Videos/Skate.webm" type="video/webm">
                     </video>
                 </div>
             </div>
@@ -111,6 +122,7 @@
                 <div class="video-overlay" id="syringeVideo">
                     <video class="video-item" controls>
                         <source src="Videos/Syringe.mp4" type="video/mp4">
+                        <source src="Videos/Syringe.webm" type="video/webm">
                     </video>
                 </div>
             </div>
@@ -119,6 +131,7 @@
                 <div class="video-overlay" id="turtleVideo">
                     <video class="video-item" controls>
                         <source src="Videos/Turtle.mp4" type="video/mp4">
+                        <source src="Videos/Turtle.webm" type="video/webm">
                     </video>
                 </div>
             </div>
@@ -130,10 +143,29 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('rainCanvas');
-            const ctx = canvas.getContext('2d');
             const videos = document.querySelectorAll('.video-item');
             const overlays = document.querySelectorAll('.video-overlay');
+
+            overlays.forEach(overlay => {
+                const video = overlay.querySelector('video');
+
+                overlay.addEventListener('mouseenter', () => {
+                    video.currentTime = 0; // Start from the beginning each time
+                    video.play();
+                    overlay.style.display = 'block';
+                });
+
+                overlay.addEventListener('mouseleave', () => {
+                    video.pause();
+                    overlay.style.display = 'none';
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('rainCanvas');
+            const ctx = canvas.getContext('2d');
 
             let mouseX = 0;
             let mouseY = 0;
@@ -196,21 +228,6 @@
             }
 
             animate();
-
-            overlays.forEach(overlay => {
-                const video = overlay.querySelector('video');
-
-                overlay.addEventListener('mouseenter', () => {
-                    video.currentTime = 0; // Start from the beginning each time
-                    video.play();
-                    overlay.style.display = 'block';
-                });
-
-                overlay.addEventListener('mouseleave', () => {
-                    video.pause();
-                    overlay.style.display = 'none';
-                });
-            });
         });
     </script>
 </body>
