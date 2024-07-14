@@ -66,6 +66,7 @@
             transition: transform 0.3s;
             border-radius: 50%;
             overflow: hidden;
+            border: 2px solid white; /* White circular outline */
         }
 
         .image-item img {
@@ -149,6 +150,12 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .logo {
+            width: 20%;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
     </style>
 </head>
 <body>
@@ -156,7 +163,7 @@
     <div class="scroll-container">
         <div class="container">
             <h1 class="animated-text">After the Rain Games</h1>
-            <img src="Images/ATRLogo.png" alt="ATRLogo">
+            <img src="Images/ATRLogo.png" alt="ATR Logo" class="logo">
             <div class="about-section">
                 <h2>About</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
@@ -316,7 +323,7 @@
 
             function drawRaindrops() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(174,194,224,0.5)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                 raindrops.forEach(raindrop => {
                     ctx.beginPath();
                     ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
@@ -325,9 +332,9 @@
             }
 
             function animate() {
+                requestAnimationFrame(animate);
                 updateRaindrops();
                 drawRaindrops();
-                requestAnimationFrame(animate);
             }
 
             animate();
