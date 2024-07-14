@@ -71,8 +71,8 @@
         .image-item img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
+            object-fit: cover; /* Ensures images fill the circular container */
+            border-radius: 50%; /* Rounds the corners */
             transition: transform 0.3s;
         }
 
@@ -87,7 +87,7 @@
 
         .game-section {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Keep images on the left */
             align-items: center;
             padding: 20px;
             margin: 20px 0;
@@ -97,6 +97,8 @@
             width: 250px; /* Increased image size */
             height: auto;
             margin-right: 20px;
+            border-radius: 20px; /* Rounded corners for rectangular images */
+            object-fit: cover; /* Ensure images fill the rectangular space */
         }
 
         .game-section .game-details {
@@ -123,6 +125,12 @@
             font-size: 1.2em;
             margin: 10px 0;
         }
+
+        .games-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -130,7 +138,11 @@
     <div class="scroll-container">
         <div class="container">
             <h1 class="animated-text">After the Rain Games</h1>
-            <div class="game-header">Games:</div>
+            <div class="contact-section">
+                <h2>Contact Me</h2>
+                <p class="contact-email">atrgames.contact@gmail.com</p>
+            </div>
+            <div class="games-header">Games:</div>
             <div class="image-container">
                 <div class="image-item" onclick="scrollToSection('skateSection')">
                     <img src="Images/Skate.png" alt="Skate">
@@ -159,10 +171,6 @@
                         </video>
                     </div>
                 </div>
-            </div>
-            <div class="contact-section">
-                <h2>Contact Me</h2>
-                <p class="contact-email">atrgames.contact@gmail.com</p>
             </div>
         </div>
 
