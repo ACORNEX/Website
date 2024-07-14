@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AfterTheRainGames</title>
-    <link rel="icon" type="image/png" href="Images/ATRLogo.png">
     <style>
         body {
             margin: 0;
@@ -55,7 +54,7 @@
         .image-container {
             display: flex;
             justify-content: center;
-            margin-top: 10px; /* Adjusted margin */
+            margin-top: 20px;
         }
 
         .image-item {
@@ -63,11 +62,11 @@
             width: 100px;
             height: 100px;
             background-color: transparent;
-            margin: 0 10px; /* Adjusted margin */
+            margin: 0 20px;
             transition: transform 0.3s;
             border-radius: 50%;
             overflow: hidden;
-            border: 2px solid white; /* White circular outline */
+            border: 2px solid white; /* Add white circular outline */
         }
 
         .image-item img {
@@ -82,34 +81,13 @@
             transform: scale(1.2);
         }
 
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-
-        .video-item {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: auto;
-        }
-
         .contact-section {
-            margin-top: 40px; /* Increased margin */
+            margin-top: 20px;
         }
 
         .contact-email {
             font-size: 1.2em;
-            margin: 20px 0; /* Increased margin */
+            margin: 20px 0; /* Larger margin for Contact Me section */
         }
 
         .game-section {
@@ -138,45 +116,42 @@
         .game-section ul li {
             margin-bottom: 10px;
         }
+
+        .games-section {
+            margin-top: 20px; /* Adjusted margin */
+        }
+
+        .about-section {
+            margin-bottom: 20px; /* Adjusted margin */
+        }
+
+        video#loopVideo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
     <canvas id="rainCanvas"></canvas>
     <div class="scroll-container">
         <div class="container">
-            <img src="Images/ATRLogo.png" alt="ATR Logo" style="width: 20%; border-radius: 50%; border: 2px solid white;">
-            <h1 class="animated-text">After The Rain Games</h1>
+            <h1 class="animated-text">After the Rain Games</h1>
             <div class="about-section">
                 <h2>About</h2>
-                <p>Welcome to After The Rain Games! We're a solo game dev team right now.</p>
+                <p>Welcome to After The Rain Games! I'm a solo indie game developer creating unique gaming experiences.</p>
             </div>
             <div class="image-container">
                 <div class="image-item" onclick="scrollToSection('skateSection')">
                     <img src="Images/Skate.png" alt="Skate">
-                    <div class="video-overlay" id="skateVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Skate.mp4" type="video/mp4">
-                            <source src="Videos/Skate.webm" type="video/webm">
-                        </video>
-                    </div>
                 </div>
                 <div class="image-item" onclick="scrollToSection('syringeSection')">
                     <img src="Images/Syringe.png" alt="Syringe">
-                    <div class="video-overlay" id="syringeVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Syringe.mp4" type="video/mp4">
-                            <source src="Videos/Syringe.webm" type="video/webm">
-                        </video>
-                    </div>
                 </div>
                 <div class="image-item" onclick="scrollToSection('turtleSection')">
                     <img src="Images/Turtle.png" alt="Turtle">
-                    <div class="video-overlay" id="turtleVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Turtle.mp4" type="video/mp4">
-                            <source src="Videos/Turtle.webm" type="video/webm">
-                        </video>
-                    </div>
                 </div>
             </div>
             <div class="contact-section">
@@ -192,57 +167,50 @@
         <div id="skateSection" class="game-section">
             <img src="Images/Skate.png" alt="Skate">
             <div>
-                <h3>Skate N' Peel</h3>
-                <h4>Style Game Jam (June 21st- June 24th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                <h3>Skate Game</h3>
+                <ul>
+                    <li>Style Game Jam (June 21st- June 24th)</li>
+                    <li>Skate2</li>
+                    <li>Skate3</li>
+                    <li>Play it here: <a href="https://aftertheraingames.itch.io/skate-n-peel" target="_blank" style="color: yellow;">https://aftertheraingames.itch.io/skate-n-peel</a></li>
+                </ul>
             </div>
         </div>
 
         <div id="syringeSection" class="game-section">
             <img src="Images/Syringe.png" alt="Syringe">
             <div>
-                <h3>Syringe Sprinter</h3>
-                <h4>Light Game Jam (June 7th to June 10th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                <h3>Syringe Game</h3>
+                <ul>
+                    <li>Light Game Jam (June 7th to June 10th)</li>
+                    <li>Syringe2</li>
+                    <li>Syringe3</li>
+                    <li>Play it here: <a href="https://aftertheraingames.itch.io/syringe-sprinter" target="_blank" style="color: yellow;">https://aftertheraingames.itch.io/syringe-sprinter</a></li>
+                </ul>
             </div>
         </div>
 
         <div id="turtleSection" class="game-section">
             <img src="Images/Turtle.png" alt="Turtle">
             <div>
-                <h3>Turtle Golf</h3>
-                <h4>Ocean Game Jam (May 24th to May 27th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                <h3>Turtle Game</h3>
+                <ul>
+                    <li>Ocean Game Jam (May 24th to May 27th)</li>
+                    <li>Turtle2</li>
+                    <li>Turtle3</li>
+                    <li>Play it here: <a href="https://aftertheraingames.itch.io/turtle-golf" target="_blank" style="color: yellow;">https://aftertheraingames.itch.io/turtle-golf</a></li>
+                </ul>
             </div>
         </div>
+
+        <!-- Looping Video -->
+        <video id="loopVideo" autoplay loop>
+            <source src="Videos/Syringe.mp4" type="video/mp4">
+            <!-- Add other video sources here as needed -->
+        </video>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const videos = document.querySelectorAll('.video-item');
-            const overlays = document.querySelectorAll('.video-overlay');
-
-            overlays.forEach(overlay => {
-                const video = overlay.querySelector('video');
-
-                overlay.addEventListener('mouseenter', () => {
-                    video.currentTime = 0; // Start from the beginning each time
-                    video.play();
-                    overlay.style.display = 'block';
-                });
-
-                overlay.addEventListener('mouseleave', () => {
-                    video.pause();
-                    overlay.style.display = 'none';
-                });
-            });
-        });
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('rainCanvas');
             const ctx = canvas.getContext('2d');
@@ -265,8 +233,8 @@
 
             function createRaindrop(x, y) {
                 return {
-                    x: x,
-                    y: y,
+                    x,
+                    y,
                     speed: 2 + Math.random() * 3,
                     radius: 2 + Math.random() * 2
                 };
