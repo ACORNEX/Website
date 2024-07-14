@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +8,6 @@
         body {
             margin: 0;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             font-family: Arial, sans-serif;
             background-color: #000;
         }
@@ -31,6 +26,7 @@
             z-index: 1;
             text-align: center;
             color: white;
+            padding: 20px;
         }
 
         .animated-text {
@@ -51,25 +47,30 @@
         .image-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px; /* Space between the button and the images */
+            margin-top: 20px;
         }
 
         .image-item {
             position: relative;
-            width: 100px; /* Adjust the size as needed */
-            height: 100px; /* Adjust the size as needed */
+            width: 100px;
+            height: 100px;
             background-color: transparent;
-            margin: 0 20px; /* Space between the images */
-            transition: transform 0.3s; /* Smooth transition for transform */
-            border-radius: 50%; /* Make it circular */
-            overflow: hidden; /* Ensure the circular shape doesn't show corners */
+            margin: 0 20px;
+            transition: transform 0.3s;
+            border-radius: 50%;
+            overflow: hidden;
         }
 
         .image-item img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 50%; /* Ensure the image itself is circular */
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.2);
         }
 
         .video-overlay {
@@ -102,6 +103,30 @@
             color: white;
             margin: 10px 0;
         }
+
+        .game-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+            margin: 20px 0;
+            color: white;
+        }
+
+        .game-section img {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .game-section h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .game-section p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -109,7 +134,7 @@
     <div class="container">
         <h1 class="animated-text">After the Rain Games</h1>
         <div class="image-container">
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('skateSection')">
                 <img src="Images/Skate.png" alt="Skate">
                 <div class="video-overlay" id="skateVideo">
                     <video class="video-item" controls>
@@ -118,7 +143,7 @@
                     </video>
                 </div>
             </div>
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('syringeSection')">
                 <img src="Images/Syringe.png" alt="Syringe">
                 <div class="video-overlay" id="syringeVideo">
                     <video class="video-item" controls>
@@ -127,7 +152,7 @@
                     </video>
                 </div>
             </div>
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('turtleSection')">
                 <img src="Images/Turtle.png" alt="Turtle">
                 <div class="video-overlay" id="turtleVideo">
                     <video class="video-item" controls>
@@ -142,6 +167,32 @@
             <p class="contact-email">atrgames.contact@gmail.com</p>
         </div>
     </div>
+
+    <!-- Game sections -->
+    <div id="skateSection" class="game-section">
+        <img src="Images/Skate.png" alt="Skate">
+        <div>
+            <h3>Skate Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
+    <div id="syringeSection" class="game-section">
+        <img src="Images/Syringe.png" alt="Syringe">
+        <div>
+            <h3>Syringe Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
+    <div id="turtleSection" class="game-section">
+        <img src="Images/Turtle.png" alt="Turtle">
+        <div>
+            <h3>Turtle Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const videos = document.querySelectorAll('.video-item');
@@ -162,8 +213,12 @@
                 });
             });
         });
-    </script>
-    <script>
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('rainCanvas');
             const ctx = canvas.getContext('2d');
@@ -175,7 +230,7 @@
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
-            
+
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
@@ -202,7 +257,7 @@
                         raindrop.y = -raindrop.radius;
                         raindrop.x = Math.random() * canvas.width;
                     }
-                    
+
                     const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
                     if (dist < 100) {
                         const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
