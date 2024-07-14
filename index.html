@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Rain</title>
+    <title>After The Rain Games</title>
     <style>
         body {
             margin: 0;
@@ -16,8 +16,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: auto; /* Enable scrolling within this container */
-            height: 100vh; /* Adjust as needed */
+            overflow-y: auto;
+            height: 100vh;
         }
 
         canvas {
@@ -64,6 +64,7 @@
             background-color: transparent;
             margin: 0 20px;
             transition: transform 0.3s;
+            border: 2px solid white; /* White circular outline */
             border-radius: 50%;
             overflow: hidden;
             cursor: pointer;
@@ -79,24 +80,6 @@
 
         .image-item:hover img {
             transform: scale(1.2);
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: auto;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-
-        .video-item {
-            width: 100%;
-            height: 100%;
         }
 
         .contact-section {
@@ -125,8 +108,8 @@
             cursor: pointer;
         }
 
-        .game-section img:hover + .video-overlay {
-            display: block;
+        .game-section img:hover {
+            opacity: 0.7;
         }
 
         .game-section h3 {
@@ -142,6 +125,46 @@
             margin-bottom: 10px;
         }
 
+        .video-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: auto;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .video-overlay.active {
+            display: block;
+        }
+
+        .video-item {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: -1;
+        }
+
+        .video-bottom video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        a {
+            color: yellow;
+        }
     </style>
 </head>
 <body>
@@ -149,19 +172,14 @@
     <div class="scroll-container">
         <div class="container">
             <h1 class="animated-text">After the Rain Games</h1>
-            <div class="about-section">
-                <h2>About</h2>
-                <p>Welcome to After The Rain Games! We're a solo game dev team right now.</p>
-                <p>Explore our games below!</p>
-            </div>
             <div class="image-container">
-                <div class="image-item" onclick="scrollToSection('skateSection')">
+                <div class="image-item" onclick="showVideo('skateVideo')">
                     <img src="Images/Skate.png" alt="Skate">
                 </div>
-                <div class="image-item" onclick="scrollToSection('syringeSection')">
+                <div class="image-item" onclick="showVideo('syringeVideo')">
                     <img src="Images/Syringe.png" alt="Syringe">
                 </div>
-                <div class="image-item" onclick="scrollToSection('turtleSection')">
+                <div class="image-item" onclick="showVideo('turtleVideo')">
                     <img src="Images/Turtle.png" alt="Turtle">
                 </div>
                 <div class="image-item">
@@ -179,17 +197,17 @@
 
         <!-- Game sections -->
         <div id="skateSection" class="game-section">
-            <img src="Images/Skate.png" alt="Skate" onclick="playVideo('skateVideo')">
+            <img src="Images/Skate.png" alt="Skate" onclick="showVideo('skateVideo')">
             <div>
                 <h3>Skate Game</h3>
                 <ul>
                     <li>Style Game Jam (June 21st- June 24th)</li>
                     <li>Skate2</li>
                     <li>Skate3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow;">https://aftertheraingames.itch.io/skate-n-peel</a></strong></li>
+                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/skate-n-peel">https://aftertheraingames.itch.io/skate-n-peel</a></strong></li>
                 </ul>
             </div>
-            <div class="video-overlay" id="skateVideo" onclick="pauseVideo('skateVideo')">
+            <div class="video-overlay" id="skateVideo" onclick="hideVideo('skateVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Skate.mp4" type="video/mp4">
                     <source src="Videos/Skate.webm" type="video/webm">
@@ -198,17 +216,17 @@
         </div>
 
         <div id="syringeSection" class="game-section">
-            <img src="Images/Syringe.png" alt="Syringe" onclick="playVideo('syringeVideo')">
+            <img src="Images/Syringe.png" alt="Syringe" onclick="showVideo('syringeVideo')">
             <div>
                 <h3>Syringe Game</h3>
                 <ul>
                     <li>Light Game Jam (June 7th to June 10th)</li>
                     <li>Syringe2</li>
                     <li>Syringe3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow;">https://aftertheraingames.itch.io/syringe-sprinter</a></strong></li>
+                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/syringe-sprinter">https://aftertheraingames.itch.io/syringe-sprinter</a></strong></li>
                 </ul>
             </div>
-            <div class="video-overlay" id="syringeVideo" onclick="pauseVideo('syringeVideo')">
+            <div class="video-overlay" id="syringeVideo" onclick="hideVideo('syringeVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Syringe.mp4" type="video/mp4">
                     <source src="Videos/Syringe.webm" type="video/webm">
@@ -217,17 +235,17 @@
         </div>
 
         <div id="turtleSection" class="game-section">
-            <img src="Images/Turtle.png" alt="Turtle" onclick="playVideo('turtleVideo')">
+            <img src="Images/Turtle.png" alt="Turtle" onclick="showVideo('turtleVideo')">
             <div>
                 <h3>Turtle Game</h3>
                 <ul>
                     <li>Ocean Game Jam (May 24th to May 27th)</li>
                     <li>Turtle2</li>
                     <li>Turtle3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow;">https://aftertheraingames.itch.io/turtle-golf</a></strong></li>
+                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/turtle-golf">https://aftertheraingames.itch.io/turtle-golf</a></strong></li>
                 </ul>
             </div>
-            <div class="video-overlay" id="turtleVideo" onclick="pauseVideo('turtleVideo')">
+            <div class="video-overlay" id="turtleVideo" onclick="hideVideo('turtleVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Turtle.mp4" type="video/mp4">
                     <source src="Videos/Turtle.webm" type="video/webm">
@@ -235,8 +253,8 @@
             </div>
         </div>
 
-        <div class="video-overlay" style="position: fixed; bottom: 0; left: 0; width: 100%; height: auto; z-index: -1;">
-            <video class="video-item" loop autoplay muted style="width: 100%; height: auto;">
+        <div class="video-bottom">
+            <video class="video-item" loop autoplay muted>
                 <source src="Videos/Syringe.mp4" type="video/mp4">
                 <source src="Videos/Syringe.webm" type="video/webm">
             </video>
@@ -264,14 +282,14 @@
             section.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function playVideo(videoId) {
-            const video = document.getElementById(videoId).querySelector('video');
-            video.play();
+        function showVideo(videoId) {
+            const videoOverlay = document.getElementById(videoId);
+            videoOverlay.classList.add('active');
         }
 
-        function pauseVideo(videoId) {
-            const video = document.getElementById(videoId).querySelector('video');
-            video.pause();
+        function hideVideo(videoId) {
+            const videoOverlay = document.getElementById(videoId);
+            videoOverlay.classList.remove('active');
         }
     </script>
 </body>
