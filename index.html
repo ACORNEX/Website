@@ -8,32 +8,24 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: white;
-        }
-
-        .scroll-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
             z-index: -1;
         }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling within this container */
             padding: 20px;
+            color: white;
         }
 
         .animated-text {
@@ -49,46 +41,6 @@
             50% {
                 color: yellow;
             }
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .image-item {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            background-color: transparent;
-            margin: 0 20px;
-            transition: transform 0.3s;
-            border: 2px solid white; /* White circular outline */
-            border-radius: 50%;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .image-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-
-        .image-item:hover img {
-            transform: scale(1.2);
-        }
-
-        .contact-section {
-            margin-top: 20px;
-        }
-
-        .contact-email {
-            font-size: 1.2em;
-            margin: 10px 0;
         }
 
         .game-section {
@@ -110,19 +62,6 @@
 
         .game-section img:hover {
             opacity: 0.7;
-        }
-
-        .game-section h3 {
-            margin: 0 0 10px 0;
-        }
-
-        .game-section ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .game-section ul li {
-            margin-bottom: 10px;
         }
 
         .video-overlay {
@@ -170,43 +109,9 @@
 <body>
     <canvas id="rainCanvas"></canvas>
     <div class="scroll-container">
-        <div class="container">
-            <h1 class="animated-text">After the Rain Games</h1>
-            <div class="image-container">
-                <div class="image-item" onclick="showVideo('skateVideo')">
-                    <img src="Images/Skate.png" alt="Skate">
-                </div>
-                <div class="image-item" onclick="showVideo('syringeVideo')">
-                    <img src="Images/Syringe.png" alt="Syringe">
-                </div>
-                <div class="image-item" onclick="showVideo('turtleVideo')">
-                    <img src="Images/Turtle.png" alt="Turtle">
-                </div>
-                <div class="image-item">
-                    <img src="Images/ATRLogo.png" alt="ATRLogo" style="width: 20%; border: 2px solid white; border-radius: 50%;">
-                </div>
-            </div>
-            <div class="contact-section">
-                <h2>Contact Me</h2>
-                <p class="contact-email">atrgames.contact@gmail.com</p>
-            </div>
-            <div class="games-section">
-                <h2>Games</h2>
-            </div>
-        </div>
-
-        <!-- Game sections -->
-        <div id="skateSection" class="game-section">
+        <div class="animated-text">After The Rain Games</div>
+        <div class="game-section" id="skateSection">
             <img src="Images/Skate.png" alt="Skate" onclick="showVideo('skateVideo')">
-            <div>
-                <h3>Skate Game</h3>
-                <ul>
-                    <li>Style Game Jam (June 21st- June 24th)</li>
-                    <li>Skate2</li>
-                    <li>Skate3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/skate-n-peel">https://aftertheraingames.itch.io/skate-n-peel</a></strong></li>
-                </ul>
-            </div>
             <div class="video-overlay" id="skateVideo" onclick="hideVideo('skateVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Skate.mp4" type="video/mp4">
@@ -214,18 +119,8 @@
                 </video>
             </div>
         </div>
-
-        <div id="syringeSection" class="game-section">
+        <div class="game-section" id="syringeSection">
             <img src="Images/Syringe.png" alt="Syringe" onclick="showVideo('syringeVideo')">
-            <div>
-                <h3>Syringe Game</h3>
-                <ul>
-                    <li>Light Game Jam (June 7th to June 10th)</li>
-                    <li>Syringe2</li>
-                    <li>Syringe3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/syringe-sprinter">https://aftertheraingames.itch.io/syringe-sprinter</a></strong></li>
-                </ul>
-            </div>
             <div class="video-overlay" id="syringeVideo" onclick="hideVideo('syringeVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Syringe.mp4" type="video/mp4">
@@ -233,18 +128,8 @@
                 </video>
             </div>
         </div>
-
-        <div id="turtleSection" class="game-section">
+        <div class="game-section" id="turtleSection">
             <img src="Images/Turtle.png" alt="Turtle" onclick="showVideo('turtleVideo')">
-            <div>
-                <h3>Turtle Game</h3>
-                <ul>
-                    <li>Ocean Game Jam (May 24th to May 27th)</li>
-                    <li>Turtle2</li>
-                    <li>Turtle3</li>
-                    <li><strong>Play it here: <a href="https://aftertheraingames.itch.io/turtle-golf">https://aftertheraingames.itch.io/turtle-golf</a></strong></li>
-                </ul>
-            </div>
             <div class="video-overlay" id="turtleVideo" onclick="hideVideo('turtleVideo')">
                 <video class="video-item" loop>
                     <source src="Videos/Turtle.mp4" type="video/mp4">
@@ -252,7 +137,6 @@
                 </video>
             </div>
         </div>
-
         <div class="video-bottom">
             <video class="video-item" loop autoplay muted>
                 <source src="Videos/Syringe.mp4" type="video/mp4">
@@ -263,24 +147,65 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const videos = document.querySelectorAll('.video-item');
+            const canvas = document.getElementById('rainCanvas');
+            const ctx = canvas.getContext('2d');
+            let mouseX = 0;
+            let mouseY = 0;
 
-            videos.forEach(video => {
-                video.addEventListener('mouseenter', () => {
-                    video.currentTime = 0;
-                    video.play();
-                });
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
 
-                video.addEventListener('mouseleave', () => {
-                    video.pause();
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function createRaindrop(x, y) {
+                return {
+                    x,
+                    y,
+                    speed: 2 + Math.random() * 3,
+                    radius: 2 + Math.random() * 2
+                };
+            }
+
+            const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
+
+            function updateRaindrops() {
+                raindrops.forEach(raindrop => {
+                    raindrop.y += raindrop.speed;
+                    if (raindrop.y > canvas.height) {
+                        raindrop.y = -raindrop.radius;
+                        raindrop.x = Math.random() * canvas.width;
+                    }
+
+                    const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
+                    if (dist < 100) {
+                        const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
+                        raindrop.x += Math.cos(angle) * 5;
+                        raindrop.y += Math.sin(angle) * 5;
+                    }
                 });
-            });
+            }
+
+            function drawRaindrops() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(174,194,224,0.5)';
+                raindrops.forEach(raindrop => {
+                    ctx.beginPath();
+                    ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+
+            function animate() {
+                updateRaindrops();
+                drawRaindrops();
+                requestAnimationFrame(animate);
+            }
+
+            animate();
         });
-
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
 
         function showVideo(videoId) {
             const videoOverlay = document.getElementById(videoId);
