@@ -7,16 +7,11 @@
     <style>
         body {
             margin: 0;
-            overflow-y: auto; /* Enable vertical scrolling */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            overflow: hidden;
             font-family: Arial, sans-serif;
             background-color: #000;
         }
 
-        /* Styling for the rain canvas */
         canvas {
             position: absolute;
             top: 0;
@@ -26,19 +21,14 @@
             z-index: -1;
         }
 
-        /* Container styling */
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative;
+            z-index: 1;
+            text-align: center;
             color: white;
-            margin-top: 20px;
-            width: 80%; /* Adjusted width */
-            max-width: 1200px; /* Maximum width */
             padding: 20px;
         }
 
-        /* Animated text styling */
         .animated-text {
             font-size: 2em;
             color: white;
@@ -54,34 +44,35 @@
             }
         }
 
-        /* Image container styling */
         .image-container {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        /* Individual image item styling */
         .image-item {
             position: relative;
-            width: 120px; /* Adjusted size */
-            height: 120px; /* Adjusted size */
+            width: 100px;
+            height: 100px;
             background-color: transparent;
-            margin: 0 20px; /* Space between the images */
-            transition: transform 0.3s; /* Smooth transition for transform */
-            border-radius: 50%; /* Make it circular */
-            overflow: hidden; /* Ensure the circular shape doesn't show corners */
+            margin: 0 20px;
+            transition: transform 0.3s;
+            border-radius: 50%;
+            overflow: hidden;
         }
 
-        /* Image within image item styling */
         .image-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensure the image fills the circular shape */
-            border-radius: 50%; /* Ensure the image itself is circular */
+            object-fit: contain;
+            border-radius: 50%;
+            transition: transform 0.3s;
         }
 
-        /* Video overlay styling */
+        .image-item:hover img {
+            transform: scale(1.2);
+        }
+
         .video-overlay {
             position: absolute;
             top: 0;
@@ -94,7 +85,6 @@
             cursor: pointer;
         }
 
-        /* Video item styling */
         .video-item {
             position: absolute;
             top: 50%;
@@ -104,80 +94,38 @@
             height: auto;
         }
 
-        /* Contact section styling */
         .contact-section {
             margin-top: 20px;
-            text-align: center;
         }
 
-        /* Contact email styling */
         .contact-email {
             font-size: 1.2em;
             color: white;
             margin: 10px 0;
-            font-weight: bold; /* Added bold font weight */
         }
 
-        /* Games header styling */
-        .games-header {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        /* Game details section styling */
-        .game-details {
+        .game-section {
             display: flex;
-            align-items: flex-start;
             justify-content: center;
-            margin-top: 20px;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+            margin: 20px 0;
+            color: white;
         }
 
-        /* Game image styling */
-        .game-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
+        .game-section img {
+            width: 200px;
+            height: auto;
             margin-right: 20px;
         }
 
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .game-section h3 {
+            margin: 0 0 10px 0;
         }
 
-        /* Game description styling */
-        .game-description {
-            flex: 1;
-            color: white;
-            text-align: left;
-        }
-
-        /* List styling for game details */
-        .game-description ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
-        /* Individual list item styling */
-        .game-description li {
-            margin-bottom: 5px;
-        }
-
-        /* Scrollbar for overflow */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
+        .game-section p {
+            margin: 0;
         }
     </style>
 </head>
@@ -185,76 +133,66 @@
     <canvas id="rainCanvas"></canvas>
     <div class="container">
         <h1 class="animated-text">After the Rain Games</h1>
-        <div class="contact-section">
-            <p class="contact-email">atrgames.contact@gmail.com</p>
-        </div>
-        <h2 class="games-header">Games:</h2>
         <div class="image-container">
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('skateSection')">
                 <img src="Images/Skate.png" alt="Skate">
                 <div class="video-overlay" id="skateVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Skate.mp4" type="video/mp4">
                         <source src="Videos/Skate.webm" type="video/webm">
                     </video>
                 </div>
             </div>
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('syringeSection')">
                 <img src="Images/Syringe.png" alt="Syringe">
                 <div class="video-overlay" id="syringeVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Syringe.mp4" type="video/mp4">
                         <source src="Videos/Syringe.webm" type="video/webm">
                     </video>
                 </div>
             </div>
-            <div class="image-item">
+            <div class="image-item" onclick="scrollToSection('turtleSection')">
                 <img src="Images/Turtle.png" alt="Turtle">
                 <div class="video-overlay" id="turtleVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Turtle.mp4" type="video/mp4">
                         <source src="Videos/Turtle.webm" type="video/webm">
                     </video>
                 </div>
             </div>
         </div>
-        <div class="game-details">
-            <div class="game-image">
-                <img src="Images/Skate.png" alt="Skate">
-            </div>
-            <div class="game-description">
-                <p>This is a placeholder for game description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis leo est. Integer vel velit at libero faucibus ullamcorper. Donec sit amet ligula eget augue interdum dignissim.</p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-        <div class="game-details">
-            <div class="game-image">
-                <img src="Images/Syringe.png" alt="Syringe">
-            </div>
-            <div class="game-description">
-                <p>This is a placeholder for game description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis leo est. Integer vel velit at libero faucibus ullamcorper. Donec sit amet ligula eget augue interdum dignissim.</p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-        <div class="game-details">
-            <div class="game-image">
-                <img src="Images/Turtle.png" alt="Turtle">
-            </div>
-            <div class="game-description">
-                <p>This is a placeholder for game description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis leo est. Integer vel velit at libero faucibus ullamcorper. Donec sit amet ligula eget augue interdum dignissim.</p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
+        <div class="contact-section">
+            <h2>Contact Me</h2>
+            <p class="contact-email">atrgames.contact@gmail.com</p>
         </div>
     </div>
+
+    <!-- Game sections -->
+    <div id="skateSection" class="game-section">
+        <img src="Images/Skate.png" alt="Skate">
+        <div>
+            <h3>Skate Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
+    <div id="syringeSection" class="game-section">
+        <img src="Images/Syringe.png" alt="Syringe">
+        <div>
+            <h3>Syringe Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
+    <div id="turtleSection" class="game-section">
+        <img src="Images/Turtle.png" alt="Turtle">
+        <div>
+            <h3>Turtle Game</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const videos = document.querySelectorAll('.video-item');
@@ -276,6 +214,11 @@
             });
         });
 
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const canvas = document.getElementById('rainCanvas');
             const ctx = canvas.getContext('2d');
@@ -287,7 +230,7 @@
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
-            
+
             window.addEventListener('resize', resizeCanvas);
             resizeCanvas();
 
@@ -314,7 +257,7 @@
                         raindrop.y = -raindrop.radius;
                         raindrop.x = Math.random() * canvas.width;
                     }
-                    
+
                     const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
                     if (dist < 100) {
                         const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
