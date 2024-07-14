@@ -50,25 +50,25 @@
         .image-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 20px; /* Space between the button and the images */
         }
 
         .image-item {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 100px; /* Adjust the size as needed */
+            height: 100px; /* Adjust the size as needed */
             background-color: transparent;
-            margin: 0 20px;
-            transition: transform 0.3s;
-            border-radius: 50%;
-            overflow: hidden;
+            margin: 0 20px; /* Space between the images */
+            transition: transform 0.3s; /* Smooth transition for transform */
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden; /* Ensure the circular shape doesn't show corners */
         }
 
         .image-item img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 50%;
+            border-radius: 50%; /* Ensure the image itself is circular */
         }
 
         .video-overlay {
@@ -101,32 +101,17 @@
             color: white;
             margin: 10px 0;
         }
-
-        .main-video {
-            margin-top: 20px;
-            width: 80%;
-            max-width: 600px;
-            height: auto;
-            border: 2px solid white;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
     <canvas id="rainCanvas"></canvas>
     <div class="container">
         <h1 class="animated-text">After the Rain Games</h1>
-        <video class="main-video" controls>
-            <source src="Videos/Syringe.mp4" type="video/mp4">
-            <source src="Videos/Syringe.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
         <div class="image-container">
             <div class="image-item">
                 <img src="Images/Skate.png" alt="Skate">
                 <div class="video-overlay" id="skateVideo">
                     <video class="video-item" controls>
-                        <source src="Videos/Skate.mp4" type="video/mp4">
                         <source src="Videos/Skate.webm" type="video/webm">
                     </video>
                 </div>
@@ -135,7 +120,6 @@
                 <img src="Images/Syringe.png" alt="Syringe">
                 <div class="video-overlay" id="syringeVideo">
                     <video class="video-item" controls>
-                        <source src="Videos/Syringe.mp4" type="video/mp4">
                         <source src="Videos/Syringe.webm" type="video/webm">
                     </video>
                 </div>
@@ -144,7 +128,6 @@
                 <img src="Images/Turtle.png" alt="Turtle">
                 <div class="video-overlay" id="turtleVideo">
                     <video class="video-item" controls>
-                        <source src="Videos/Turtle.mp4" type="video/mp4">
                         <source src="Videos/Turtle.webm" type="video/webm">
                     </video>
                 </div>
