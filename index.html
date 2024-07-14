@@ -101,12 +101,26 @@
             color: white;
             margin: 10px 0;
         }
+
+        .main-video {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            height: auto;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
     <canvas id="rainCanvas"></canvas>
     <div class="container">
         <h1 class="animated-text">After the Rain Games</h1>
+        <video class="main-video" controls>
+            <source src="Videos/Syringe.mp4" type="video/mp4">
+            <source src="Videos/Syringe.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
         <div class="image-container">
             <div class="image-item">
                 <img src="Images/Skate.png" alt="Skate">
