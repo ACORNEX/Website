@@ -141,6 +141,14 @@
         .game-section ul li {
             margin-bottom: 10px;
         }
+
+        a {
+            color: yellow;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +228,7 @@
         <div id="turtleSection" class="game-section">
             <img src="Images/Turtle.png" alt="Turtle">
             <div>
-                <h3>Turtle Game</h4>
+                <h3>Turtle Game</h3>
                 <h4>Ocean Game Jam (May 24th to May 27th)</h4>
                 <h4>Play it here: <a href="https://aftertheraingames.itch.io/turtle-golf" target="_blank">https://aftertheraingames.itch.io/turtle-golf</a></h4>
                 <ul>
@@ -279,8 +287,8 @@
 
             function createRaindrop(x, y) {
                 return {
-                    x,
-                    y,
+                    x: x,
+                    y: y,
                     speed: 2 + Math.random() * 3,
                     radius: 2 + Math.random() * 2
                 };
