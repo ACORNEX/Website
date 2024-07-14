@@ -59,8 +59,8 @@
 
         .image-item {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 120px; /* Increased size */
+            height: 120px; /* Increased size */
             background-color: transparent;
             margin: 0 20px;
             transition: transform 0.3s;
@@ -80,34 +80,9 @@
             transform: scale(1.2);
         }
 
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-
-        .video-item {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: auto;
-        }
-
-        .contact-section {
-            margin-top: 20px;
-        }
-
-        .contact-email {
-            font-size: 1.2em;
-            margin: 10px 0;
+        .game-header {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
         .game-section {
@@ -119,17 +94,34 @@
         }
 
         .game-section img {
-            width: 200px;
+            width: 250px; /* Increased image size */
             height: auto;
             margin-right: 20px;
         }
 
-        .game-section h3 {
-            margin: 0 0 10px 0;
+        .game-section .game-details {
+            flex: 1; /* Take remaining space */
+            text-align: left;
+            padding-left: 20px;
         }
 
-        .game-section p {
+        .game-section ul {
+            list-style-type: disc;
             margin: 0;
+            padding: 0 0 0 20px;
+        }
+
+        .game-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .contact-section {
+            margin-top: 20px;
+        }
+
+        .contact-email {
+            font-size: 1.2em;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -138,6 +130,7 @@
     <div class="scroll-container">
         <div class="container">
             <h1 class="animated-text">After the Rain Games</h1>
+            <div class="game-header">Games:</div>
             <div class="image-container">
                 <div class="image-item" onclick="scrollToSection('skateSection')">
                     <img src="Images/Skate.png" alt="Skate">
@@ -176,25 +169,37 @@
         <!-- Game sections -->
         <div id="skateSection" class="game-section">
             <img src="Images/Skate.png" alt="Skate">
-            <div>
+            <div class="game-details">
                 <h3>Skate Game</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+                <ul>
+                    <li>Bullet point 1</li>
+                    <li>Bullet point 2</li>
+                    <li>Bullet point 3</li>
+                </ul>
             </div>
         </div>
 
         <div id="syringeSection" class="game-section">
             <img src="Images/Syringe.png" alt="Syringe">
-            <div>
+            <div class="game-details">
                 <h3>Syringe Game</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+                <ul>
+                    <li>Bullet point 1</li>
+                    <li>Bullet point 2</li>
+                    <li>Bullet point 3</li>
+                </ul>
             </div>
         </div>
 
         <div id="turtleSection" class="game-section">
             <img src="Images/Turtle.png" alt="Turtle">
-            <div>
+            <div class="game-details">
                 <h3>Turtle Game</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
+                <ul>
+                    <li>Bullet point 1</li>
+                    <li>Bullet point 2</li>
+                    <li>Bullet point 3</li>
+                </ul>
             </div>
         </div>
     </div>
