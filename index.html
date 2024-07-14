@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +113,7 @@
                 <img src="Images/Skate.png" alt="Skate">
                 <div class="video-overlay" id="skateVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Skate.mp4" type="video/mp4">
                         <source src="Videos/Skate.webm" type="video/webm">
                     </video>
                 </div>
@@ -120,6 +122,7 @@
                 <img src="Images/Syringe.png" alt="Syringe">
                 <div class="video-overlay" id="syringeVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Syringe.mp4" type="video/mp4">
                         <source src="Videos/Syringe.webm" type="video/webm">
                     </video>
                 </div>
@@ -128,6 +131,7 @@
                 <img src="Images/Turtle.png" alt="Turtle">
                 <div class="video-overlay" id="turtleVideo">
                     <video class="video-item" controls>
+                        <source src="Videos/Turtle.mp4" type="video/mp4">
                         <source src="Videos/Turtle.webm" type="video/webm">
                     </video>
                 </div>
@@ -184,7 +188,7 @@
                 return {
                     x,
                     y,
-                    speed: 2 + Math.random() * 3,
+                    speed: 2 + Math.random() * 3, // Adjusted speed range for slower rain
                     radius: 2 + Math.random() * 2
                 };
             }
