@@ -37,6 +37,32 @@
             padding: 20px;
         }
 
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            margin: 0 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .tab.active {
+            background-color: #555;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .animated-text {
             font-size: 2em;
             color: white;
@@ -155,188 +181,172 @@
         <div class="container">
             <img src="Images/ATRLogo.png" alt="ATR Logo" style="width: 20%; border-radius: 50%; border: 2px solid white;">
             <h1 class="animated-text">After The Rain Games</h1>
-            <div class="about-section">
-                <h2>About</h2>
-                <p>Welcome to After The Rain Games!<br>
-                I'm a solo indie game developer with a passion for making games.</p>
+
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('home')">Home</div>
+                <div class="tab" onclick="showTab('speed')">Speedrunning</div>
             </div>
-            <div class="image-container">
-                <div class="image-item" onclick="scrollToSection('skateSection')">
-                    <img id="skateImage" src="Images/Skate.png" alt="Skate">
-                    <video id="skateVideo" class="video-item" loop>
-                        <source src="Videos/Skate.mp4" type="video/mp4">
-                        <source src="Videos/Skate.webm" type="video/webm">
-                    </video>
+
+            <div id="home" class="tab-content active">
+                <div class="about-section">
+                    <h2>About</h2>
+                    <p>Welcome to After The Rain Games!<br>
+                    I'm a solo indie game developer with a passion for making games.</p>
                 </div>
-                <div class="image-item" onclick="scrollToSection('syringeSection')">
-                    <img src="Images/Syringe.png" alt="Syringe">
-                    <video id="syringeVideo" class="video-item" loop>
-                        <source src="Videos/Syringe.mp4" type="video/mp4">
-                        <source src="Videos/Syringe.webm" type="video/webm">
-                    </video>
+                <div class="image-container">
+                    <div class="image-item" onclick="scrollToSection('skateSection')">
+                        <img id="skateImage" src="Images/Skate.png" alt="Skate">
+                        <video id="skateVideo" class="video-item" loop>
+                            <source src="Videos/Skate.mp4" type="video/mp4">
+                            <source src="Videos/Skate.webm" type="video/webm">
+                        </video>
+                    </div>
+                    <div class="image-item" onclick="scrollToSection('syringeSection')">
+                        <img src="Images/Syringe.png" alt="Syringe">
+                        <video id="syringeVideo" class="video-item" loop>
+                            <source src="Videos/Syringe.mp4" type="video/mp4">
+                            <source src="Videos/Syringe.webm" type="video/webm">
+                        </video>
+                    </div>
+                    <div class="image-item" onclick="scrollToSection('turtleSection')">
+                        <img src="Images/Turtle.png" alt="Turtle">
+                        <video id="turtleVideo" class="video-item" loop>
+                            <source src="Videos/Turtle.mp4" type="video/mp4">
+                            <source src="Videos/Turtle.webm" type="video/webm">
+                        </video>
+                    </div>
                 </div>
-                <div class="image-item" onclick="scrollToSection('turtleSection')">
-                    <img src="Images/Turtle.png" alt="Turtle">
-                    <video id="turtleVideo" class="video-item" loop>
-                        <source src="Videos/Turtle.mp4" type="video/mp4">
-                        <source src="Videos/Turtle.webm" type="video/webm">
-                    </video>
+                <div class="contact-section">
+                    <h2>Contact Me</h2>
+                    <p class="contact-email">atrgames.contact@gmail.com</p>
+                </div>
+                <div class="games-section">
+                    <h2>Games</h2>
+                    <div id="skateSection" class="game-section">
+                        <img src="Images/Skate.png" alt="Skate">
+                        <div>
+                            <h3>Skate N' Peel - 3D Trick Based Skateboarding Platformer</h3>
+                            <h4>Style Game Jam (June 21st- June 24th)</h4>
+                            <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                            <ul>
+                                <li>Feature 1</li>
+                                <li>Feature 2</li>
+                                <li>Feature 3</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="syringeSection" class="game-section">
+                        <img src="Images/Syringe.png" alt="Syringe">
+                        <div>
+                            <h3>Syringe Sprinter - Fast-paced horror game</h3>
+                            <h4>Light Game Jam (June 7th to June 10th)</h4>
+                            <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                            <ul>
+                                <li>Feature 1</li>
+                                <li>Feature 2</li>
+                                <li>Feature 3</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="turtleSection" class="game-section">
+                        <img src="Images/Turtle.png" alt="Turtle">
+                        <div>
+                            <h3>Turtle Golf - Physics-Based Puddle Jumping Adventure</h3>
+                            <h4>Ocean Game Jam (May 24th to May 27th)</h4>
+                            <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                            <ul>
+                                <li>Feature 1</li>
+                                <li>Feature 2</li>
+                                <li>Feature 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="upcoming-section">
+                    <img src="Images/ATRLogo.png" alt="ATR Logo" style="border-radius: 50%; border: 2px solid white;">
+                    <div>
+                        <h3>Upcoming Projects</h3>
+                        <ul>
+                            <li>Detective Game - Desert Themed</li>
+                            <li>Another Upcoming Project</li>
+                            <li>And Another One</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="contact-section">
-                <h2>Contact Me</h2>
-                <p class="contact-email">atrgames.contact@gmail.com</p>
-            </div>
-            <div class="games-section">
-                <h2>Games</h2>
-            </div>
-        </div>
 
-        <!-- Game sections -->
-        <div id="skateSection" class="game-section">
-            <img src="Images/Skate.png" alt="Skate">
-            <div>
-                <h3>Skate N' Peel - 3D Trick Based Skateboarding Platformer</h3>
-                <h4>Style Game Jam (June 21st- June 24th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="syringeSection" class="game-section">
-            <img src="Images/Syringe.png" alt="Syringe">
-            <div>
-                <h3>Syringe Sprinter - Fast-paced horror game</h3>
-                <h4>Light Game Jam (June 7th to June 10th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="turtleSection" class="game-section">
-            <img src="Images/Turtle.png" alt="Turtle">
-            <div>
-                <h3>Turtle Golf - Physics-Based Puddle Jumping Adventure</h3>
-                <h4>Ocean Game Jam (May 24th to May 27th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Upcoming Projects section -->
-        <div id="upcomingSection" class="upcoming-section">
-            <img src="Images/Upcoming.png" alt="Upcoming">
-            <div>
-                <h3>Upcoming Projects</h3>
-                <p>Dessert Game Jam (June 19th to June 21st)</p>
+            <div id="speed" class="tab-content">
+                <h2>Speedrunning</h2>
+                <p>Coming soon!</p>
             </div>
         </div>
     </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const videos = document.querySelectorAll('.video-item');
-
-            videos.forEach(video => {
-                const image = video.previousElementSibling;
-
-                video.parentElement.addEventListener('mouseenter', () => {
-                    image.style.display = 'none';
-                    video.style.display = 'block';
-                    video.play();
-                });
-
-                video.parentElement.addEventListener('mouseleave', () => {
-                    video.pause();
-                    video.style.display = 'none';
-                    image.style.display = 'block';
-                });
+        // Video hover play functionality
+        document.querySelectorAll('.image-item').forEach(item => {
+            const video = item.querySelector('video');
+            item.addEventListener('mouseenter', () => {
+                video.play();
+            });
+            item.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
             });
         });
 
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
+        // Tab functionality
+        function showTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(tabName).classList.add('active');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('rainCanvas');
-            const ctx = canvas.getContext('2d');
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
 
-            let mouseX = 0;
-            let mouseY = 0;
+        // Rain effect
+        const canvas = document.getElementById('rainCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
+        const raindrops = Array.from({ length: 1000 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            length: Math.random() * 15 + 1,
+            velocity: Math.random() * 2 + 2,
+        }));
 
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
+        function drawRaindrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1;
+            ctx.lineCap = 'round';
 
-            document.addEventListener('mousemove', (event) => {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
+            raindrops.forEach(raindrop => {
+                ctx.beginPath();
+                ctx.moveTo(raindrop.x, raindrop.y);
+                ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+                ctx.stroke();
+                raindrop.y += raindrop.velocity;
+                if (raindrop.y > canvas.height) {
+                    raindrop.y = -raindrop.length;
+                }
             });
 
-            function createRaindrop(x, y) {
-                return {
-                    x: x,
-                    y: y,
-                    speed: 2 + Math.random() * 3,
-                    radius: 2 + Math.random() * 2
-                };
-            }
+            requestAnimationFrame(drawRaindrops);
+        }
 
-            const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
-
-            function updateRaindrops() {
-                raindrops.forEach(raindrop => {
-                    raindrop.y += raindrop.speed;
-                    if (raindrop.y > canvas.height) {
-                        raindrop.y = -raindrop.radius;
-                        raindrop.x = Math.random() * canvas.width;
-                    }
-
-                    const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
-                    if (dist < 100) {
-                        const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
-                        raindrop.x += Math.cos(angle) * 5;
-                        raindrop.y += Math.sin(angle) * 5;
-                    }
-                });
-            }
-
-            function drawRaindrops() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(174,194,224,0.5)';
-                raindrops.forEach(raindrop => {
-                    ctx.beginPath();
-                    ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            function animate() {
-                updateRaindrops();
-                drawRaindrops();
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        });
+        drawRaindrops();
     </script>
 </body>
 </html>
