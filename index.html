@@ -78,6 +78,13 @@
             transition: transform 0.3s;
         }
 
+        .image-item video {
+            display: none; /* Initially hide the video */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .image-item:hover img {
             transform: scale(1.2);
         }
@@ -151,14 +158,12 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
             </div>
             <div class="image-container">
-                <div class="image-item" onclick="scrollToSection('skateSection')">
-                    <img src="Images/Skate.png" alt="Skate">
-                    <div class="video-overlay" id="skateVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Skate.mp4" type="video/mp4">
-                            <source src="Videos/Skate.webm" type="video/webm">
-                        </video>
-                    </div>
+                <div class="image-item" onclick="toggleVideo('skateVideo')">
+                    <img id="skateImage" src="Images/Skate.png" alt="Skate">
+                    <video id="skateVideo" class="video-item" controls>
+                        <source src="Videos/Skate.mp4" type="video/mp4">
+                        <source src="Videos/Skate.webm" type="video/webm">
+                    </video>
                 </div>
                 <div class="image-item" onclick="scrollToSection('syringeSection')">
                     <img src="Images/Syringe.png" alt="Syringe">
@@ -241,6 +246,22 @@
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleVideo(videoId) {
+            const video = document.getElementById(videoId);
+            const image = document.getElementById(videoId.replace('Video', 'Image'));
+
+            if (video.style.display === 'none') {
+                video.style.display = 'block';
+                image.style.display = 'none';
+                video.currentTime = 0;
+                video.play();
+            } else {
+                video.pause();
+                video.style.display = 'none';
+                image.style.display = 'block';
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
