@@ -35,9 +35,6 @@
             z-index: 1;
             text-align: center;
             padding: 20px;
-            display: flex; /* Flex container to align items */
-            justify-content: center; /* Center content horizontally */
-            align-items: flex-start; /* Align items to the top */
         }
 
         .animated-text {
@@ -85,21 +82,6 @@
             transform: scale(1.2);
         }
 
-        .video-container {
-            flex: 1; /* Take up remaining space */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
-            box-sizing: border-box; /* Include padding in width */
-        }
-
-        .video-box {
-            border: 2px solid white;
-            padding: 10px;
-            width: 300px; /* Adjust width as needed */
-        }
-
         .video-overlay {
             position: absolute;
             top: 0;
@@ -113,7 +95,11 @@
         }
 
         .video-item {
-            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
             height: auto;
         }
 
@@ -132,7 +118,6 @@
             align-items: center;
             padding: 20px;
             margin: 20px 0;
-            width: 100%; /* Ensure full width */
         }
 
         .game-section img {
@@ -165,64 +150,70 @@
                 <h2>About</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel purus vel dui dapibus tempor. Suspendisse potenti.</p>
             </div>
-        </div>
-        <div class="video-container">
-            <!-- Game sections -->
-            <div id="skateSection" class="game-section">
-                <img src="Images/Skate.png" alt="Skate">
-                <div>
-                    <h3>Skate Game</h3>
-                    <h4>Style Game Jam (June 21st- June 24th)</h4>
-                    <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                </div>
-                <!-- Video -->
-                <div class="video-box">
+            <div class="image-container">
+                <div class="image-item" onclick="scrollToSection('skateSection')">
+                    <img src="Images/Skate.png" alt="Skate">
                     <div class="video-overlay" id="skateVideo">
                         <video class="video-item" controls>
                             <source src="Videos/Skate.mp4" type="video/mp4">
+                            <source src="Videos/Skate.webm" type="video/webm">
                         </video>
                     </div>
                 </div>
-            </div>
-
-            <div id="syringeSection" class="game-section">
-                <img src="Images/Syringe.png" alt="Syringe">
-                <div>
-                    <h3>Syringe Game</h3>
-                    <h4>Light Game Jam (June 7th to June 10th)</h4>
-                    <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                </div>
-                <!-- Video -->
-                <div class="video-box">
+                <div class="image-item" onclick="scrollToSection('syringeSection')">
+                    <img src="Images/Syringe.png" alt="Syringe">
                     <div class="video-overlay" id="syringeVideo">
                         <video class="video-item" controls>
                             <source src="Videos/Syringe.mp4" type="video/mp4">
+                            <source src="Videos/Syringe.webm" type="video/webm">
                         </video>
                     </div>
                 </div>
-            </div>
-
-            <div id="turtleSection" class="game-section">
-                <img src="Images/Turtle.png" alt="Turtle">
-                <div>
-                    <h3>Turtle Game</h3>
-                    <h4>Ocean Game Jam (May 24th to May 27th)</h4>
-                    <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                </div>
-                <!-- Video -->
-                <div class="video-box">
+                <div class="image-item" onclick="scrollToSection('turtleSection')">
+                    <img src="Images/Turtle.png" alt="Turtle">
                     <div class="video-overlay" id="turtleVideo">
                         <video class="video-item" controls>
                             <source src="Videos/Turtle.mp4" type="video/mp4">
+                            <source src="Videos/Turtle.webm" type="video/webm">
                         </video>
                     </div>
                 </div>
             </div>
+            <div class="contact-section">
+                <h2>Contact Me</h2>
+                <p class="contact-email">atrgames.contact@gmail.com</p>
+            </div>
+            <div class="games-section">
+                <h2>Games</h2>
+            </div>
         </div>
 
-        <div class="contact-section">
-            <h2>Contact Me</h2>
-            <p class="contact-email">atrgames.contact@gmail.com</p>
+        <!-- Game sections -->
+        <div id="skateSection" class="game-section">
+            <img src="Images/Skate.png" alt="Skate">
+            <div>
+                <h3>Skate Game</h3>
+                <h4>Style Game Jam (June 21st- June 24th)</h4>
+                <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
+            </div>
+        </div>
+
+        <div id="syringeSection" class="game-section">
+            <img src="Images/Syringe.png" alt="Syringe">
+            <div>
+                <h3>Syringe Game</h3>
+                <h4>Light Game Jam (June 7th to June 10th)</h4>
+                <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
+            </div>
+        </div>
+
+        <div id="turtleSection" class="game-section">
+            <img src="Images/Turtle.png" alt="Turtle">
+            <div>
+                <h3>Turtle Game</h3>
+                <h4>Ocean Game Jam (May 24th to May 27th)</h4>
+                <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
+            </div>
         </div>
     </div>
 
