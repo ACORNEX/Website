@@ -89,25 +89,8 @@
             transform: scale(1.2);
         }
 
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            cursor: pointer;
-        }
-
-        .video-item {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: auto;
+        .image-item:hover video {
+            display: block;
         }
 
         .contact-section {
@@ -160,30 +143,26 @@
                 With a passion for storytelling and a knack for coding, I bring unique and immersive experiences to life, one game at a time.</p>
             </div>
             <div class="image-container">
-                <div class="image-item" onclick="toggleVideo('skateVideo')">
+                <div class="image-item" onclick="scrollToSection('skateSection')">
                     <img id="skateImage" src="Images/Skate.png" alt="Skate">
-                    <video id="skateVideo" class="video-item" controls>
+                    <video id="skateVideo" class="video-item" loop>
                         <source src="Videos/Skate.mp4" type="video/mp4">
                         <source src="Videos/Skate.webm" type="video/webm">
                     </video>
                 </div>
                 <div class="image-item" onclick="scrollToSection('syringeSection')">
                     <img src="Images/Syringe.png" alt="Syringe">
-                    <div class="video-overlay" id="syringeVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Syringe.mp4" type="video/mp4">
-                            <source src="Videos/Syringe.webm" type="video/webm">
-                        </video>
-                    </div>
+                    <video id="syringeVideo" class="video-item" loop>
+                        <source src="Videos/Syringe.mp4" type="video/mp4">
+                        <source src="Videos/Syringe.webm" type="video/webm">
+                    </video>
                 </div>
                 <div class="image-item" onclick="scrollToSection('turtleSection')">
                     <img src="Images/Turtle.png" alt="Turtle">
-                    <div class="video-overlay" id="turtleVideo">
-                        <video class="video-item" controls>
-                            <source src="Videos/Turtle.mp4" type="video/mp4">
-                            <source src="Videos/Turtle.webm" type="video/webm">
-                        </video>
-                    </div>
+                    <video id="turtleVideo" class="video-item" loop>
+                        <source src="Videos/Turtle.mp4" type="video/mp4">
+                        <source src="Videos/Turtle.webm" type="video/webm">
+                    </video>
                 </div>
             </div>
             <div class="contact-section">
@@ -227,20 +206,20 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const videos = document.querySelectorAll('.video-item');
-            const overlays = document.querySelectorAll('.video-overlay');
 
-            overlays.forEach(overlay => {
-                const video = overlay.querySelector('video');
+            videos.forEach(video => {
+                const image = video.previousElementSibling;
 
-                overlay.addEventListener('mouseenter', () => {
-                    video.currentTime = 0; // Start from the beginning each time
+                video.parentElement.addEventListener('mouseenter', () => {
+                    image.style.display = 'none';
+                    video.style.display = 'block';
                     video.play();
-                    overlay.style.display = 'block';
                 });
 
-                overlay.addEventListener('mouseleave', () => {
+                video.parentElement.addEventListener('mouseleave', () => {
                     video.pause();
-                    overlay.style.display = 'none';
+                    video.style.display = 'none';
+                    image.style.display = 'block';
                 });
             });
         });
@@ -248,22 +227,6 @@
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             section.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function toggleVideo(videoId) {
-            const video = document.getElementById(videoId);
-            const image = document.getElementById(videoId.replace('Video', 'Image'));
-
-            if (video.style.display === 'none') {
-                video.style.display = 'block';
-                image.style.display = 'none';
-                video.currentTime = 0;
-                video.play();
-            } else {
-                video.pause();
-                video.style.display = 'none';
-                image.style.display = 'block';
-            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
