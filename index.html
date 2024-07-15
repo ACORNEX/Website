@@ -103,11 +103,15 @@
         }
 
         .game-section {
-            display: flex;
+            display: none; /* Hide game sections by default */
             justify-content: center;
             align-items: center;
             padding: 20px;
             margin: 20px 0;
+        }
+
+        .game-section.active {
+            display: flex; /* Show active game section */
         }
 
         .game-section img {
@@ -131,11 +135,15 @@
         }
 
         .upcoming-section {
-            display: flex;
+            display: none; /* Hide upcoming projects section by default */
             justify-content: center;
             align-items: center;
             padding: 20px;
             margin: 20px 0;
+        }
+
+        .upcoming-section.active {
+            display: flex; /* Show active upcoming section */
         }
 
         .upcoming-section img {
@@ -147,6 +155,24 @@
         .upcoming-section h3 {
             margin: 0 0 10px 0;
         }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            margin: 0 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .tab.active {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -155,92 +181,78 @@
         <div class="container">
             <img src="Images/ATRLogo.png" alt="ATR Logo" style="width: 20%; border-radius: 50%; border: 2px solid white;">
             <h1 class="animated-text">After The Rain Games</h1>
-            <div class="about-section">
+
+            <div class="tabs">
+                <div class="tab active" onclick="showSection('about')">About</div>
+                <div class="tab" onclick="showSection('games')">Games</div>
+                <div class="tab" onclick="showSection('upcoming')">Upcoming Projects</div>
+            </div>
+
+            <!-- About Section -->
+            <div id="about" class="about-section">
                 <h2>About</h2>
                 <p>Welcome to After The Rain Games!<br>
                 I'm a solo indie game developer with a passion for making games.</p>
             </div>
-            <div class="image-container">
-                <div class="image-item" onclick="scrollToSection('skateSection')">
-                    <img id="skateImage" src="Images/Skate.png" alt="Skate">
-                    <video id="skateVideo" class="video-item" loop>
-                        <source src="Videos/Skate.mp4" type="video/mp4">
-                        <source src="Videos/Skate.webm" type="video/webm">
-                    </video>
+
+            <!-- Games Section -->
+            <div id="games" class="game-section">
+                <div id="skateSection" class="game-item">
+                    <img src="Images/Skate.png" alt="Skate">
+                    <div>
+                        <h3>Skate N' Peel - 3D Trick Based Skateboarding Platformer</h3>
+                        <h4>Style Game Jam (June 21st- June 24th)</h4>
+                        <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                        <ul>
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="image-item" onclick="scrollToSection('syringeSection')">
+
+                <div id="syringeSection" class="game-item">
                     <img src="Images/Syringe.png" alt="Syringe">
-                    <video id="syringeVideo" class="video-item" loop>
-                        <source src="Videos/Syringe.mp4" type="video/mp4">
-                        <source src="Videos/Syringe.webm" type="video/webm">
-                    </video>
+                    <div>
+                        <h3>Syringe Sprinter - Fast-paced horror game</h3>
+                        <h4>Light Game Jam (June 7th to June 10th)</h4>
+                        <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                        <ul>
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="image-item" onclick="scrollToSection('turtleSection')">
+
+                <div id="turtleSection" class="game-item">
                     <img src="Images/Turtle.png" alt="Turtle">
-                    <video id="turtleVideo" class="video-item" loop>
-                        <source src="Videos/Turtle.mp4" type="video/mp4">
-                        <source src="Videos/Turtle.webm" type="video/webm">
-                    </video>
+                    <div>
+                        <h3>Turtle Golf - Physics-Based Puddle Jumping Adventure</h3>
+                        <h4>Ocean Game Jam (May 24th to May 27th)</h4>
+                        <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
+                        <ul>
+                            <li>Feature 1</li>
+                            <li>Feature 2</li>
+                            <li>Feature 3</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
+            <!-- Upcoming Projects Section -->
+            <div id="upcoming" class="upcoming-section">
+                <img src="Images/Upcoming.png" alt="Upcoming">
+                <div>
+                    <h3>Upcoming Projects</h3>
+                    <p>Dessert Game Jam (June 19th to June 21st)</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
             <div class="contact-section">
                 <h2>Contact Me</h2>
                 <p class="contact-email">atrgames.contact@gmail.com</p>
-            </div>
-            <div class="games-section">
-                <h2>Games</h2>
-            </div>
-        </div>
-
-        <!-- Game sections -->
-        <div id="skateSection" class="game-section">
-            <img src="Images/Skate.png" alt="Skate">
-            <div>
-                <h3>Skate N' Peel - 3D Trick Based Skateboarding Platformer</h3>
-                <h4>Style Game Jam (June 21st- June 24th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/skate-n-peel" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="syringeSection" class="game-section">
-            <img src="Images/Syringe.png" alt="Syringe">
-            <div>
-                <h3>Syringe Sprinter - Fast-paced horror game</h3>
-                <h4>Light Game Jam (June 7th to June 10th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/syringe-sprinter" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="turtleSection" class="game-section">
-            <img src="Images/Turtle.png" alt="Turtle">
-            <div>
-                <h3>Turtle Golf - Physics-Based Puddle Jumping Adventure</h3>
-                <h4>Ocean Game Jam (May 24th to May 27th)</h4>
-                <p><a href="https://aftertheraingames.itch.io/turtle-golf" style="color: yellow; text-decoration: none;">Play it here</a></p>
-                <ul>
-                    <li>Feature 1</li>
-                    <li>Feature 2</li>
-                    <li>Feature 3</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Upcoming Projects section -->
-        <div id="upcomingSection" class="upcoming-section">
-            <img src="Images/Upcoming.png" alt="Upcoming">
-            <div>
-                <h3>Upcoming Projects</h3>
-                <p>Dessert Game Jam (June 19th to June 21st)</p>
             </div>
         </div>
     </div>
@@ -266,9 +278,14 @@
             });
         });
 
-        function scrollToSection(sectionId) {
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.game-section, .upcoming-section, .about-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
             const section = document.getElementById(sectionId);
-            section.scrollIntoView({ behavior: 'smooth' });
+            section.classList.add('active');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
