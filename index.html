@@ -147,42 +147,9 @@
         .upcoming-section h3 {
             margin: 0 0 10px 0;
         }
-
-        /* New CSS for the button */
-        .speedrunning-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: yellow;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1em;
-            z-index: 2;
-        }
-
-        /* Video at the bottom of the screen */
-        .bottom-video-container {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 600px;
-            z-index: 1;
-        }
-
-        .bottom-video-container video {
-            width: 100%;
-            height: auto;
-        }
     </style>
 </head>
 <body>
-    <a href="https://acornex.github.io/SpeedRunning/" class="speedrunning-button">SpeedRunning</a>
     <canvas id="rainCanvas"></canvas>
     <div class="scroll-container">
         <div class="container">
@@ -273,81 +240,103 @@
             <img src="Images/Upcoming.png" alt="Upcoming">
             <div>
                 <h3>Upcoming Projects</h3>
-                <p>Dive into my upcoming projects!<br>
-                I'm excited to share what's in store. Stay tuned!</p>
+                <p>Dessert Game Jam (June 19th to June 21st)</p>
             </div>
         </div>
     </div>
 
-    <!-- Video at the bottom of the screen -->
-    <div class="bottom-video-container">
-        <video id="bottomVideo" loop autoplay muted>
-            <source src="Videos/Syringe.mp4" type="video/mp4">
-            <source src="Videos/Syringe.webm" type="video/webm">
-        </video>
-    </div>
-
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const videos = document.querySelectorAll('.video-item');
+
+            videos.forEach(video => {
+                const image = video.previousElementSibling;
+
+                video.parentElement.addEventListener('mouseenter', () => {
+                    image.style.display = 'none';
+                    video.style.display = 'block';
+                    video.play();
+                });
+
+                video.parentElement.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.style.display = 'none';
+                    image.style.display = 'block';
+                });
+            });
+        });
+
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             section.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Rain effect
-        const canvas = document.getElementById('rainCanvas');
-        const ctx = canvas.getContext('2d');
-        const drops = [];
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('rainCanvas');
+            const ctx = canvas.getContext('2d');
 
-        function createDrop() {
-            return {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                length: Math.random() * 20,
-                opacity: Math.random()
-            };
-        }
+            let mouseX = 0;
+            let mouseY = 0;
 
-        function drawDrop(drop) {
-            ctx.beginPath();
-            ctx.moveTo(drop.x, drop.y);
-            ctx.lineTo(drop.x, drop.y + drop.length);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${drop.opacity})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-        }
-
-        function updateDrop(drop) {
-            drop.y += 4;
-            if (drop.y > canvas.height) {
-                drop.y = 0;
-                drop.x = Math.random() * canvas.width;
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
-        }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drops.forEach(drop => {
-                drawDrop(drop);
-                updateDrop(drop);
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = event.clientX;
+                mouseY = event.clientY;
             });
-            requestAnimationFrame(animate);
-        }
 
-        function initializeRain() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            for (let i = 0; i < 500; i++) {
-                drops.push(createDrop());
+            function createRaindrop(x, y) {
+                return {
+                    x: x,
+                    y: y,
+                    speed: 2 + Math.random() * 3,
+                    radius: 2 + Math.random() * 2
+                };
             }
+
+            const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
+
+            function updateRaindrops() {
+                raindrops.forEach(raindrop => {
+                    raindrop.y += raindrop.speed;
+                    if (raindrop.y > canvas.height) {
+                        raindrop.y = -raindrop.radius;
+                        raindrop.x = Math.random() * canvas.width;
+                    }
+
+                    const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
+                    if (dist < 100) {
+                        const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
+                        raindrop.x += Math.cos(angle) * 5;
+                        raindrop.y += Math.sin(angle) * 5;
+                    }
+                });
+            }
+
+            function drawRaindrops() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(174,194,224,0.5)';
+                raindrops.forEach(raindrop => {
+                    ctx.beginPath();
+                    ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+
+            function animate() {
+                updateRaindrops();
+                drawRaindrops();
+                requestAnimationFrame(animate);
+            }
+
             animate();
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
         });
-
-        window.onload = initializeRain;
     </script>
 </body>
 </html>
