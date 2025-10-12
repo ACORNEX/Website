@@ -1,600 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-<!-- HTML -->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, inital-scale=1.0"> 
-  
-  <title>AfterTheRainGames</title>
-  <link rel="icon" href="Images/Logo.ico">
-
-<!-- CSS -->
-  <style>
-    body{
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: white;
-    overflow-x: hidden;
-    cursor: url('Images/Mouse.png'), auto;
-    }
-    
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.homeHeader {
-    padding: 30px;
-	position: relative;
-	z-index: 1;
-	text-align: center;
-}
-
-.homeHeader h{
-    font-weight: bold;
-    padding: 20px;
-}
-
-.animatedText {
-	font-size:2em;
-	color: #FEC54B;
-	animation: text-animation 3s infinite;}
-
-@keyframes text-animation {
-	0%, 100% {
-		color: white;
-		}
-	50% {
-		color: yellow;
-		}
-	}
-
-.Sample {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 80%;
-    margin: auto;
-}
-
-.Sample img {
-    width: 12%;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px white;
-    transition: transform 0.3s ease;
-}
-
-.Sample img:hover {
-    transform: scale(1.2);
-}
-
-
-.Games {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    text-align:center;
-    margin: 40px;
-    flex-direction: column;
-}
-
-.Games h {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.gameContainer {
-    display: flex;
-    justify-content: center; /* Centers the image and text horizontally */
-    margin-bottom: 40px;
-}
-
-.gameContainer img {
-    width: 30%;
-    height: auto;
-    margin-right: 20px;
-    box-shadow: 0 0 0 2px #FEC54B;
-}
-
-.gameContainer .gameText {
-    width: 30%
-}
-
-.gameContainer .gameText h{
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.description{
-    font-size: 1.5em;
-}
-
-.videoBox {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-.videoBox video {
-    border: 4px solid #FEC54B;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #FEC54B;
-}
-    
-.contact{
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    margin-bottom: 50px;
-}
-
-.contact h{
-    font-weight: bold;
-    font-size:2em;
-}
-{}
- .btn {
-            font-family: Arial, Helvetica, sans-serif;
-            text-transform: uppercase;
-            text-decoration: none; /* Remove underline from link */
-            margin-bottom: 20px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfterTheRainGames Portfolio</title>
+    <link rel="icon" href="Images/Logo.ico">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+            cursor: url('Images/Mouse.png'), auto;
         }
-        
-        .btn:hover .btn-slide-show-text1 {
-            margin-left: 65px;
-        }
-        
-        .btn-flip-side {
-            height: 50px;
-            width: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: 0.25s;
-            transform: rotateX(-90deg);
-            cursor: pointer;
-        }
-        
-        .btn-flip-side > span {
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            position: absolute;
-            box-sizing: border-box;
-            line-height: 50px;
-            text-align: center;
-            display: block;
-        }
-        
-        .btn-flip-side > span:first-child {
-            transform: translateZ(30px);
-        }
-        
-        .btn-flip-side > span:nth-child(2) {
-            color: #000;
-            font-weight: bold;
-            transform: rotateX(90deg) translateZ(30px);
-        }
-        
-        .btn-flip-side--orange > span {
-            border: 5px solid #FEC54B;
-        }
-        
-        .btn-flip-side--orange > span:first-child {
-            color: #FEC54B;
-            font-weight: bold;
-        }
-        
-        .btn-flip-side--orange > span:nth-child(2) {
-            background: #FEC54B;
-        }
-        
-        .btn-flip-side:hover {
-            transform: rotateX(0);
+            z-index: -1;
         }
 
-  </style>
+        .homeHeader {
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .homeHeader h1 {
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        .animatedText {
+            font-size: 2em;
+            color: #FEC54B;
+            animation: text-animation 3s infinite;
+        }
+
+        @keyframes text-animation {
+            0%, 100% { color: white; }
+            50% { color: yellow; }
+        }
+
+        .Games {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin: 40px;
+        }
+
+        .Games h2 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .gameGrid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .gameItem {
+            background-color: #111;
+            padding: 20px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #FEC54B;
+            border-radius: 12px;
+        }
+
+        .gameBox {
+            width: 100%;
+            height: 200px;
+            background-color: black;
+            margin-bottom: 15px;
+        }
+
+        .gameItem h3 {
+            margin: 10px 0 5px;
+            font-size: 1.5em;
+        }
+
+        .gameItem p {
+            font-size: 1.2em;
+            margin: 5px 0 15px;
+            text-align: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #FEC54B;
+            margin: 5px;
+            display: inline-block;
+            padding: 10px 15px;
+            border: 2px solid #FEC54B;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #FEC54B;
+            color: black;
+        }
+
+        .contact {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact h2 {
+            font-weight: bold;
+            font-size: 2em;
+        }
+
+        @media (max-width: 800px) {
+            .gameItem { width: 90%; }
+        }
+    </style>
 </head>
-  
 <body>
 
-   <canvas id="rainCanvas"></canvas>
-  
-  <!--
-  <div class="dropdown">
-    <button class="dropbtn" onClick="toggleDropdown()">☰</button>
-    <a href="#" onclick="scrollToSection('skateSection')">Skate</a>
-    <a href="#" onclick="scrollToSection('syringeSection')">Syringe</a>
-    <a href="#" onclick="scrollToSection('turtleSection')">Turtle</a>
-  </div>
-  -->
-  
- <div class="homeHeader">
-    <h class="animatedText">After The Rain Games</h>
-    <p> Welcome to my portfolio! Here, you'll find a showcase of my work as a gameplay programmer and solo indie developer. From innovative mechanics to complete game projects, each entry reflects my passion for crafting engaging experiences and my journey toward mastering gameplay programming. Explore my projects and discover the skills I bring to the table!</p>
- </div>
+<canvas id="rainCanvas"></canvas>
 
- <div class="Sample">
-    <img src="Images/Monsters.jpeg" alt="Monsters" onclick="scrollToSection('monstersSection')"> 
-    <img src="Images/Balloon.jpeg" alt="Balloon" onclick="scrollToSection('balloonSection')">
-    <img src="Images/Monkey.jpeg" alt="Monkey" onclick="scrollToSection('monkeySection')">
-    <img src="Images/Security.jpeg" alt="Security" onclick="scrollToSection('securitySection')">
-    <img src="Images/Paint.png" alt="Paint" onclick="scrollToSection('paintSection')">
-    <img src="Images/Dessert.png" alt="Dessert" onclick="scrollToSection('dessertSection')">
-    <img src="Images/Skate.png" alt="Skate" onclick="scrollToSection('skateSection')">
-    <img src="Images/Syringe.png" alt="Syringe" onclick="scrollToSection('syringeSection')">
-    <img src="Images/Turtle.png" alt="Turtle" onclick="scrollToSection('turtleSection')">
- </div>
-    
- <div class="Games">
-    <h>GAMES/GITHUB</h>
-    <p><a href="https://github.com/AfterTheRainGames?tab=repositories&q=&type=&language=&sort=name" style="color: #FEC54B;">https://github.com/AfterTheRainGames</a></p>
+<div class="homeHeader">
+    <h1 class="animatedText">After The Rain Games</h1>
+    <p>Welcome to my portfolio! Here, you'll find a showcase of my work as a gameplay programmer and solo indie developer. From innovative mechanics to complete game projects, each entry reflects my passion for crafting engaging experiences and my journey toward mastering gameplay programming. Explore my projects and discover the skills I bring to the table!</p>
+</div>
 
-  <div class="videoBox">
-    <iframe width="640" height="360"
-            src="https://www.youtube.com/embed/lHYc5O8IWP0"
-            title="After The Rain Games Showcase"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            style="border: 4px solid #FEC54B; border-radius: 12px; box-shadow: 0 0 15px #FEC54B;">
-    </iframe>
-  </div>
-	 
- </div>
-	
-<!--Monsters-->
-<div class="monstersGame gameContainer" id="monstersSection">
-    <img src="Images/Monsters.jpeg" alt=""Monsters>
-    <div class="gameText">
-        <h>Unlikely Heroes</h>
-        <p>Asynchronous Turn Based Strategy Game</p>
+<div class="Games">
+    <h2>GAMES / GITHUB</h2>
+    <p><a href="https://github.com/AfterTheRainGames?tab=repositories" style="color: #FEC54B;">https://github.com/AfterTheRainGames</a></p>
 
-      <a href="https://aftertheraingames.itch.io/unlikely-heroes" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
+    <div class="gameGrid">
+        <!-- Game 1 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Unlikely Heroes</h3>
+            <p>Asynchronous Turn Based Strategy Game</p>
+            <a href="https://aftertheraingames.itch.io/unlikely-heroes" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/UnlikelyHeroes" class="btn">GitHub</a>
         </div>
-      </a>
 
-     <a href="https://github.com/AfterTheRainGames/UnlikelyHeroes" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
+        <!-- Game 2 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Deflation Defender</h3>
+            <p>Inverse Tower Defense Game</p>
+            <a href="https://aftertheraingames.itch.io/deflation-defender" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/DeflationDefender" class="btn">GitHub</a>
         </div>
-      </a>
-	    
-      <div class="description">
-      <p>
-      Manage 4 unlikely heroes as they battle through waves of monsters on their way through the forest
-      </div>
 
+        <!-- Game 3 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Morty the Monkey</h3>
+            <p>Grappling Hook 3D Physics-Based Platformer</p>
+            <a href="https://aftertheraingames.itch.io/morty-the-monkey" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/MortyTheMonkey" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Midnight Warehouse</h3>
+            <p>Puzzle-Driven Ominous Adventure</p>
+            <a href="https://aftertheraingames.itch.io/midnightwarehouse" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/MidnightWarehouse" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 5 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Paint The World</h3>
+            <p>Isometric Click to Shoot Autoscroller</p>
+            <a href="https://aftertheraingames.itch.io/paint-the-world" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/PaintTheWorld" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 6 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Dessert Detective</h3>
+            <p>3D Escape Room / Puzzle Game</p>
+            <a href="https://aftertheraingames.itch.io/dessert-detective" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/DessertDetective" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 7 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Skate N' Peel</h3>
+            <p>3D Trick-Based Skateboarding Platformer</p>
+            <a href="https://aftertheraingames.itch.io/skate-n-peel" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/SkateNPeel" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 8 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Syringe Sprinter</h3>
+            <p>Fast-Paced Horror Game</p>
+            <a href="https://aftertheraingames.itch.io/syringe-sprinter" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/SyringeSprinter" class="btn">GitHub</a>
+        </div>
+
+        <!-- Game 9 -->
+        <div class="gameItem">
+            <div class="gameBox"></div>
+            <h3>Turtle Golf</h3>
+            <p>Physics Based Puddle Jumping Adventure</p>
+            <a href="https://aftertheraingames.itch.io/turtle-golf" class="btn">Play It Here</a>
+            <a href="https://github.com/AfterTheRainGames/TurtleGolf" class="btn">GitHub</a>
+        </div>
     </div>
- </div>
-<!--Balloon-->
-<div class="balloonGame gameContainer" id="balloonSection">
-    <img src="Images/Balloon.jpeg" alt="Balloon">
-    <div class="gameText">
-        <h>Deflation Defender</h>
-        <p>Inverse Tower Defense Game</p>
+</div>
 
-      <a href="https://aftertheraingames.itch.io/deflation-defender" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
+<div class="contact">
+    <h2>Contact Me</h2>
+    <p>atrgames.contact@gmail.com</p>
+</div>
 
-     <a href="https://github.com/AfterTheRainGames/DeflationDefender" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-	    
-      <div class="description">
-      <p>
-      Take control of a balloon's trusty shield while you try to survive your journey past enemies turrets
-      </div>
+<script>
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
-    </div>
- </div>
+    document.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('rainCanvas');
+        const ctx = canvas.getContext('2d');
+        let mouseX = 0, mouseY = 0;
 
-<div class="monkeyGame gameContainer" id="monkeySection">
-    <img src="Images/Monkey.jpeg" alt="Monkey">
-    <div class="gameText">
-        <h>Morty the Monkey</h>
-        <p>Grappling Hook 3D Physics-Based Platformer</p>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-      <a href="https://aftertheraingames.itch.io/morty-the-monkey" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
 
-        <a href="https://github.com/AfterTheRainGames/MortyTheMonkey" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-	    
-      <div class="description">
-      <p>
-      Help Morty get back to his family on top of the big tree by using his monkey skills and his new pal Snake
-      </p>
-      </div>
+        function createRaindrop(x, y) { return { x, y, speed: 0.5 + Math.random(), radius: 2 + Math.random() * 2 }; }
 
-    </div>
- </div>
-	    
-<div class="securityGame gameContainer" id="securitySection">
-    <img src="Images/Security.jpeg" alt="Security">
-    <div class="gameText">
-        <h>Midnight Warehouse</h>
-        <p>Puzzle-Driven Ominous Adventure</p>
+        const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
 
-      <a href="https://aftertheraingames.itch.io/midnightwarehouse" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/MidnightWarehouse" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-      <div class="description">
-      <p>
-      Complete your schedule of tasks during your midnight shift while watching out for any intruders
-      </p>
-      </div>
-
-    </div>
- </div>
-	
-<div class="paintGame gameContainer" id="paintSection">
-    <img src="Images/Paint.png" alt="Paint">
-    <div class="gameText">
-        <h>Paint The World</h>
-        <p>Isometric Click to Shoot Autoscroller</p>
-
-      <a href="https://aftertheraingames.itch.io/paint-the-world" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/PaintTheWorld" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-      <div class="description">
-      <p>
-      Restore color to the world via a head mounted turret filled with paintballs
-      </p>
-      </div>
-
-    </div>
- </div>
-	
- <div class="dessertGame gameContainer" id="dessertSection">
-    <img src="Images/Dessert.png" alt="Dessert">
-    <div class="gameText">
-        <h>Dessert Detective</h>
-        <p>3D Escape Room/Puzzle Game</p>
-
-      <a href="https://aftertheraingames.itch.io/dessert-detective" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/DessertDetective" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-      <div class="description">
-      <p>
-      Solve the various riddles of Dessert Mansion to uncover where CakeMan is hiding and what secret he has in store
-      </p>
-      </div>
-
-    </div>
- </div>
-
- <div class="skateGame gameContainer" id="skateSection">
-    <img src="Images/Skate.png" alt="Skate">
-    <div class="gameText">
-        <h>Skate N' Peel</h>
-        <p>3D Trick Based Skateboarding Platformer</p>
-
-              <a href="https://aftertheraingames.itch.io/skate-n-peel" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/SkateNPeel" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-      <div class="description">
-        <p>
-        KickFlip, Pop Shove It, and Varial Flip for the Lemon Crew to get enough cash for the board show
-        </p>
-      </div>
-
-    </div>
- </div>
-
- <div class="syringeGame gameContainer" id="syringeSection">
-    <img src="Images/Syringe.png" alt="Syringe">
-    <div class="gameText">
-        <h>Syringe Sprinter</h>
-        <p>Fast-Paced Horror Game</p>
-
-      <a href="https://aftertheraingames.itch.io/syringe-sprinter" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/SyringeSprinter" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-     <div class="description">
-      <p>
-      Sprint and collect syringes filled with the speed of light while trying to avoid the monster who lives within
-      </p>
-     </div>
-
-    </div>
- </div>
-
- <div class="turtleGame gameContainer" id="turtleSection">
-    <img src="Images/Turtle.png" alt="Turtle">
-    <div class="gameText">
-        <h>Turtle Golf</h>
-        <p>Physics Based Puddle Jumping Adventure</p>
-
-      <a href="https://aftertheraingames.itch.io/turtle-golf" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>Play It Here</span> 
-        </div>
-      </a>
-
-      <a href="https://github.com/AfterTheRainGames/TurtleGolf" class="btn">
-        <div class="btn btn-flip-side btn-flip-side--orange"> 
-            <span>Click Me</span> 
-            <span>GitHub</span> 
-        </div>
-      </a>
-
-     <div class="description">
-      <p>
-      Drop rocks into puddles to get O.Shawn the turtle back to the Ocean to rejoin his family
-      </p>
-     </div>
-
-    </div>
- </div>
-
-
- <div class="contact">
-   <h>Contact Me</h>
-   <p>atrgames.contact@gmail.com</p>
- </div>
-
-<!-- JAVA SCRIPT -->
-  <script>
-
-   function scrollToSection(sectionId) 
-   {
-      const section = document.getElementById(sectionId);
-      section.scrollIntoView({behavior:'smooth', block:'center'});
-   }
-
- document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('rainCanvas');
-            const ctx = canvas.getContext('2d');
-
-            let mouseX = 0;
-            let mouseY = 0;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            document.addEventListener('mousemove', (event) => {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
+        function updateRaindrops() {
+            raindrops.forEach(drop => {
+                drop.y += drop.speed;
+                if (drop.y > canvas.height) { drop.y = -drop.radius; drop.x = Math.random() * canvas.width; }
+                const dist = Math.hypot(drop.x - mouseX, drop.y - mouseY);
+                if (dist < 30) { const angle = Math.atan2(drop.y - mouseY, drop.x - mouseX); drop.x += Math.cos(angle) * 5; drop.y += Math.sin(angle) * 5; }
             });
+        }
 
-            function createRaindrop(x, y) {
-                return {
-                    x: x,
-                    y: y,
-                    speed: .5 + Math.random() * 1,
-                    radius: 2 + Math.random() * 2
-                };
-            }
+        function drawRaindrops() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(174,194,224,0.5)';
+            raindrops.forEach(drop => { ctx.beginPath(); ctx.arc(drop.x, drop.y, drop.radius, 0, Math.PI * 2); ctx.fill(); });
+        }
 
-            const raindrops = Array.from({ length: 500 }, () => createRaindrop(Math.random() * canvas.width, Math.random() * canvas.height));
-
-            function updateRaindrops() {
-                raindrops.forEach(raindrop => {
-                    raindrop.y += raindrop.speed;
-                    if (raindrop.y > canvas.height) {
-                        raindrop.y = -raindrop.radius;
-                        raindrop.x = Math.random() * canvas.width;
-                    }
-
-                    const dist = Math.hypot(raindrop.x - mouseX, raindrop.y - mouseY);
-                    if (dist < 30) {
-                        const angle = Math.atan2(raindrop.y - mouseY, raindrop.x - mouseX);
-                        raindrop.x += Math.cos(angle) * 5;
-                        raindrop.y += Math.sin(angle) * 5;
-                    }
-                });
-            }
-
-            function drawRaindrops() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(174,194,224,0.5)';
-                raindrops.forEach(raindrop => {
-                    ctx.beginPath();
-                    ctx.arc(raindrop.x, raindrop.y, raindrop.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            function animate() {
-                updateRaindrops();
-                drawRaindrops();
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        });
-
-  </script>
+        function animate() { updateRaindrops(); drawRaindrops(); requestAnimationFrame(animate); }
+        animate();
+    });
+</script>
 
 </body>
 </html>
-
-
