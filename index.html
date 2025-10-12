@@ -1,302 +1,568 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfterTheRainGames</title>
-    <link rel="icon" href="Images/Logo.ico">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: white;
-            overflow-x: hidden;
-            cursor: url('Images/Mouse.png'), auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainy Mood Gameplay Programmer Portfolio</title>
+  <style>
+    :root {
+      --night: #223656;
+      --rain: #a0d8ef;
+      --text: #eaeaea;
+      --glass: rgba(70, 90, 130, 0.45);
+      --accent: #7ad1e6;
+    }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--rain) var(--night);
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, var(--night) 70%, #373b44 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    body::-webkit-scrollbar {
+      width: 10px;
+      background: var(--night);
+    }
+    body::-webkit-scrollbar-thumb {
+      background: var(--rain);
+      border-radius: 5px;
+    }
+    nav {
+      background: var(--glass);
+      backdrop-filter: blur(5px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--rain);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-shadow: 0 0 6px var(--rain);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.3em 0.7em;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    nav ul li a:hover {
+      background: var(--accent);
+      color: var(--night);
+    }
+    .hero {
+      min-height: 20vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 1rem 2rem 1rem;
+      background: rgba(34, 54, 86, 0.6);
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 2.7rem;
+      font-weight: bold;
+      color: var(--rain);
+      text-shadow: 0 4px 20px var(--accent);
+    }
+    .hero p {
+      font-size: 1.15rem;
+      margin: 1rem 0 2rem 0;
+      max-width: 480px;
+    }
+    .cta {
+      background: var(--accent);
+      color: var(--night);
+      padding: 0.7rem 2rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.08rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(160, 216, 239, 0.08);
+    }
+    .cta:hover {
+      background: var(--rain);
+    }
+    .section {
+      background: rgba(34, 54, 86, 0.65);
+      margin: 2rem auto;
+      padding: 2.5rem 1rem;
+      border-radius: 18px;
+      max-width: 2200px;
+      box-shadow: 0 2px 25px rgba(160, 216, 239, 0.13);
+      z-index: 2;
+      position: relative;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.7rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: rgba(122, 209, 230, 0.13);
+      border-radius: 14px;
+      box-shadow: 0 2px 14px rgba(160, 216, 239, 0.11);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 440px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .project-image {
+      width: 315px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #95aecf;
+      margin-bottom: 1.1rem;
+      border: 2px solid var(--rain);
+      box-shadow: 0 2px 17px rgba(122, 209, 230, 0.13);
+      flex-shrink: 0;
+    }
+    .project-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--rain);
+  text-align: center;
+}
+.project-skills {
+  background: rgba(34, 54, 86, 0.75);
+  padding: 0.4em 1em;
+  border-radius: 30px;
+  color: var(--rain);
+  font-size: 0.97rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  width: auto; /* let content define width */
+  margin-left: auto;
+  margin-right: auto;
+}
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Header */
-        .homeHeader {
-            padding: 30px;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .homeHeader h1 {
-            font-weight: bold;
-            font-size: 3em;
-            margin: 0;
-        }
-
-        .animatedText {
-            font-size: 2em;
-            color: #FEC54B;
-            animation: text-animation 3s infinite;
-        }
-
-        @keyframes text-animation {
-            0%, 100% { color: white; }
-            50% { color: yellow; }
-        }
-
-        /* Thumbnail navigation */
-        .Sample {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 90%;
-            margin: 20px auto;
-            z-index: 1;
-            position: relative;
-        }
-
-        .Sample img {
-            width: 12%;
-            border-radius: 50%;
-            box-shadow: 0 0 0 2px white;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .Sample img:hover {
-            transform: scale(1.2);
-        }
-
-        /* Games section */
-        .Games h2 {
-            font-size: 2em;
-            font-weight: bold;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .gameItem {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            background-color: #111;
-            padding: 20px;
-            border: 2px solid #FEC54B;
-            border-radius: 12px;
-            gap: 20px;
-            margin: 20px auto;
-            max-width: 1200px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gameItem:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px #FEC54B;
-        }
-
-        .gameItem img {
-            width: 300px;
-            height: auto;
-            border-radius: 12px;
-            border: 2px solid #FEC54B;
-        }
-
-        .gameContent {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            flex: 1;
-        }
-
-        .gameContent h3 {
-            font-size: 1.8em;
-            margin: 0 0 10px 0;
-        }
-
-        .gameContent p {
-            font-size: 1.2em;
-            margin: 5px 0;
-        }
-
-        .gameDescription {
-            margin-top: 10px;
-        }
-
-        .gameDescription ul {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
-
-        /* Buttons */
-        .btn {
-            text-decoration: none;
-            text-transform: uppercase;
-            color: #FEC54B;
-            margin: 5px 5px 5px 0;
-            display: inline-block;
-            padding: 10px 15px;
-            border: 2px solid #FEC54B;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #FEC54B;
-            color: black;
-        }
-
-        /* Contact */
-        .contact {
-            display: flex;
-            text-align: center;
-            flex-direction: column;
-            margin-bottom: 50px;
-        }
-
-        .contact h2 {
-            font-weight: bold;
-            font-size:2em;
-        }
-
-        /* Responsive */
-        @media (max-width: 800px) {
-            .gameItem {
-                flex-direction: column;
-                align-items: center;
-            }
-            .gameContent {
-                width: 100%;
-            }
-            .Sample img {
-                width: 20%;
-            }
-        }
-    </style>
+    .project-desc {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      max-height: none;
+      overflow-y: visible;
+      white-space: normal;
+      width: 100%;
+    }
+    .project-links {
+      margin-top: auto;
+      text-align: center;
+      width: 100%;
+    }
+    .project-links a {
+      text-decoration: none;
+      color: var(--accent);
+      margin-right: 1rem;
+      font-weight: 600;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .skills-tag {
+      background: var(--glass);
+      color: var(--accent);
+      padding: 0.3em 0.85em;
+      border-radius: 16px;
+      font-size: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--night);
+      color: var(--rain);
+      font-size: 1rem;
+      opacity: 0.93;
+    }
+    canvas {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @media (max-width: 1100px) {
+      .section#projects {
+        max-width: 100vw;
+        padding: 2rem 2vw;
+      }
+      .project-image {
+        width: 100%;
+        max-width: 315px;
+      }
+    }
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-card {
+        min-height: auto;
+      }
+      .project-image {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+      }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="rainCanvas"></canvas>
+  <canvas id="rain-canvas"></canvas>
+  <nav>
+    <span class="logo">After the Rain Games Portfolio</span>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <div class="homeHeader">
-        <h1 class="animatedText">After The Rain Games</h1>
-        <p>Welcome to my portfolio! Here, you'll find a showcase of my work as a gameplay programmer and solo indie developer. From innovative mechanics to complete game projects, each entry reflects my passion for crafting engaging experiences and my journey toward mastering gameplay programming. Explore my projects and discover the skills I bring to the table!</p>
-    </div>
 
-    <!-- Thumbnail Navigation -->
-    <div class="Sample">
-        <img src="Images/Monsters.jpeg" alt="Monsters" onclick="scrollToSection('monstersSection')"> 
-        <img src="Images/Balloon.jpeg" alt="Balloon" onclick="scrollToSection('balloonSection')">
-        <img src="Images/Monkey.jpeg" alt="Monkey" onclick="scrollToSection('monkeySection')">
-        <img src="Images/Security.jpeg" alt="Security" onclick="scrollToSection('securitySection')">
-        <img src="Images/Paint.png" alt="Paint" onclick="scrollToSection('paintSection')">
-        <img src="Images/Dessert.png" alt="Dessert" onclick="scrollToSection('dessertSection')">
-        <img src="Images/Skate.png" alt="Skate" onclick="scrollToSection('skateSection')">
-        <img src="Images/Syringe.png" alt="Syringe" onclick="scrollToSection('syringeSection')">
-        <img src="Images/Turtle.png" alt="Turtle" onclick="scrollToSection('turtleSection')">
-    </div>
 
-    <div class="Games">
-        <h2>GAMES / GITHUB</h2>
-        <p style="text-align:center;"><a href="https://github.com/AfterTheRainGames?tab=repositories&q=&type=&language=&sort=name" style="color: #FEC54B;">https://github.com/AfterTheRainGames</a></p>
+  <section class="hero">
+    <h1>After the Rain Games</h1>
+    <p>Rainy moods, accomplished code, and playable projects — showcasing technical depth, teamwork, and game feel.</p>
+    <button class="cta" onclick="window.scrollTo({ top: document.getElementById('projects').offsetTop, behavior: 'smooth' });">See My Projects</button>
+  </section>
 
-        <!-- Each game item with horizontal layout -->
-        <!-- Example: Monsters -->
-        <div class="gameItem" id="monstersSection">
-            <img src="Images/Monsters.jpeg" alt="Unlikely Heroes">
-            <div class="gameContent">
-                <h3>Unlikely Heroes</h3>
-                <p>Asynchronous Turn Based Strategy Game</p>
-                <div class="gameDescription">
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Manage 4 heroes with unique abilities</li>
-                        <li>Procedurally generated levels</li>
-                        <li>Turn-based combat strategy</li>
-                    </ul>
-                    <p><strong>Technologies:</strong> Unity, C#, Blender, Photoshop</p>
-                    <p><strong>Development Notes:</strong> Focused on AI behavior and smooth turn-based mechanics.</p>
-                </div>
-                <a href="https://aftertheraingames.itch.io/unlikely-heroes" class="btn">Play It Here</a>
-                <a href="https://github.com/AfterTheRainGames/UnlikelyHeroes" class="btn">GitHub</a>
-            </div>
+<section id="video-section" style="text-align:center;">
+  <h2>Gameplay Highlight</h2>
+  <video id="autoload-video" width="640" height="360" autoplay muted loop playsinline>
+    <source src="https://youtu.be/lHYc5O8IWP0" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+  <section class="section" id="projects">
+    <h2>Featured Game Projects</h2>
+    <div class="projects-grid">
+
+      <!-- Unlikely Heroes -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Unlikely Heroes.png" alt="Unlikely Heroes Game Image" />
+        <div class="project-content">
+          <div class="project-title">Unlikely Heroes</div>
+          <div class="project-skills">Turn-Based Combat • AI • Unity</div>
+          <div class="project-desc">
+            A fresh take on turn-based combat where players embody heroes with unique abilities defending against waves of monsters.<br />
+            <strong>Key Gameplay Programmer Contributions:</strong><br />
+            - Built a character rotation system for switching between heroes each with distinct skills.<br />
+            - Designed enemy AI targeting and wave-based spawning with dynamic difficulty.<br />
+            - Created combat mechanics including support, defense, and offensive abilities.<br />
+            - Developed dynamic UI showing health, statuses, and move feedback with audio cues.<br />
+            - Integrated immersive audio and visual animations for combat and UI transitions.<br />
+            <strong>Challenges Overcome:</strong> Smooth character switching animations using coroutines and animation triggers, and balanced enemy difficulty with dynamic scaling.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/UnlikelyHeroes" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/unlikely-heroes" target="_blank">Play on Itch.io</a>
+          </div>
         </div>
-
-        <!-- Repeat for all other games here using the same structure (Balloon, Monkey, etc.) -->
-        <!-- ... -->
-
+      </div>
+      <!-- Deflation Defender -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Deflation Defender.png" alt="Deflation Defender Game Image" />
+        <div class="project-content">
+          <div class="project-title">Deflation Defender</div>
+          <div class="project-skills">Gameplay Systems • Pathfinding • Unity</div>
+          <div class="project-desc">
+            Deflation Defender flips tower defense on its head by letting players control balloons navigating a 2D track while evading attacks.<br />
+            <strong>Key Gameplay Programmer Contributions:</strong><br />
+            - Developed 2D pathfinding with OnTriggerEnter-based turns and smooth rotation.<br />
+            - Implemented player shield mechanics linked to mouse input for projectile blocking.<br />
+            - Created turret prefabs with randomized fire rates and smart projectile tracking.<br />
+            - Designed prefab-based thematic levels with efficient tile snapping.<br />
+            - Built menus, audio, and fixed cross-resolution visual bugs.<br />
+            <strong>Challenges Solved:</strong> Continuous turning logic, dynamic player tracking, scaling fixes, and collision management.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/DeflationDefender" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/deflation-defender" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Morty the Monkey -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Morty The Monkey.png" alt="Morty the Monkey Game Image" />
+        <div class="project-content">
+          <div class="project-title">Morty the Monkey</div>
+          <div class="project-skills">Action • Physics • Grappling Hook</div>
+          <div class="project-desc">
+            Play as a nimble monkey using a snake as a physics-based grappling hook to swing through vibrant, challenging terrain.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Designed momentum-based movement with smooth transitions between grappling, running, wall running, and jumping.<br />
+            - Developed a physics-driven grappling hook with spring joint and dampened oscillation for realistic swinging.<br />
+            - Built modular vertical levels highlighting grappling mechanics and skill-based traversal.<br />
+            - Created intuitive UI with visual grapple point indicators and dynamic camera transitions.<br />
+            - Integrated immersive audio including bite sounds and vibrant jungle-themed visuals.<br />
+            <strong>Challenges Overcome:</strong> Tackled jittery swing physics through spring-joint mechanics; improved grapple targeting with reticles; balanced level navigation for flow and challenge.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/MortyTheMonkey" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/morty-the-monkey" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Midnight Warehouse -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Midnight Warehouse.png" alt="Midnight Warehouse Game Image" />
+        <div class="project-content">
+          <div class="project-title">Midnight Warehouse</div>
+          <div class="project-skills">First-Person Puzzle • Environmental Interaction • Unity</div>
+          <div class="project-desc">
+            A tense first-person puzzle adventure set in a creepy warehouse where players solve puzzles, clean spills, and avoid dangers to escape.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Developed intuitive object interactions and UI prompts for items like keys and fire extinguishers.<br />
+            - Designed code-entry puzzles and trigger-based environmental tasks.<br />
+            - Integrated smooth character movement and collision with Unity’s CharacterController.<br />
+            - Implemented dynamic game events, including scripted enemy behavior and changing game states.<br />
+            - Added immersive audio cues, voice lines, and atmospheric sound effects.<br />
+            <strong>Challenges Overcome:</strong> Managed complex item interactions, collision/trigger event management, and event-driven gameplay flow for a smooth player experience.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/MidnightWarehouse" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/midnightwarehouse" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Paint the World -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Paint the World.png" alt="Paint the World Game Image" />
+        <div class="project-content">
+          <div class="project-title">Paint the World</div>
+          <div class="project-skills">Action • Puzzle • Unity</div>
+          <div class="project-desc">
+            Traverse colorful environments shooting paint at NPCs to restore color and bring the world back to life.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Created action-based gameplay focused on dynamic mouse movement and paint-based puzzle solving.<br />
+            - Developed responsive player controls and integrated visual & sound feedback.<br />
+            - Designed a continuous level that scales in difficulty with challenging obstacles.<br />
+            - Added vibrant artistic visuals and upbeat audio to enhance the joyful atmosphere.<br />
+            <strong>Challenges Overcome:</strong> Fixed paint interaction by replacing mesh colliders with sphere colliders for better hit detection.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/PaintTheWorld" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/paint-the-world" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Desert Detective -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Dessert Detective.png" alt="Desert Detective Game Image" />
+        <div class="project-content">
+          <div class="project-title">Desert Detective</div>
+          <div class="project-skills">Puzzle • Interaction Systems • Unity</div>
+          <div class="project-desc">
+            An interactive puzzle game set in a mysterious desert, where players solve riddles, unlock secret IDs, and uncover hidden truths.<br />
+            <strong>Key Gameplay Programmer Contributions:</strong><br />
+            - Developed core interaction systems engaging with objects including clickable buttons and hidden items.<br />
+            - Created word puzzle mechanics with cycling clickable buttons, dynamic text updates, and morse code indicators.<br />
+            - Designed smooth character movement with walking, gravity, and sprinting controls.<br />
+            - Built dynamic UI showing progress on unlocked IDs and game progression.<br />
+            <strong>Challenges Overcome:</strong> Solved complex UI synchronization issues, improved puzzle feedback with clear visual cues, and simplified variable management.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/DessertDetective" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/dessert-detective" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Skate N Peel -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Skate N' Peel.png" alt="Skate N Peel Game Image" />
+        <div class="project-content">
+          <div class="project-title">Skate N Peel</div>
+          <div class="project-skills">Skateboarding • Trick System • Unity</div>
+          <div class="project-desc">
+            Skate as BananaMan performing kickflips, pop shuvits, and varial flips to complete NPC challenges and earn cash to access the Board Show.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Developed smooth, responsive skating, jumping, and tricking mechanics with physics-based animations.<br />
+            - Designed NPC quests with money rewards and a time-based scoring system.<br />
+            - Added an intuitive HUD showing cash balance and timer, with dynamic NPC dialogue.<br />
+            - Integrated audio for rewards, victory, and ambiance.<br />
+            <strong>Challenges Overcome:</strong> Synchronized trick animations with physics; clarified trick requirements through UI prompts; fixed collision detection for trick zones.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/SkateNPeel" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/skate-n-peel" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Syringe Sprinter -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Syringe Sprinter.png" alt="Syringe Sprinter Game Image" />
+        <div class="project-content">
+          <div class="project-title">Syringe Sprinter</div>
+          <div class="project-skills">Action-Stealth • AI Programming • Unity</div>
+          <div class="project-desc">
+            Intense action-stealth game collecting syringes while evading an AI-controlled killer in a dangerous environment.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Developed smooth player movement with dynamic speed, responsive evasion, gravity, and jumping mechanics.<br />
+            - Implemented advanced AI using raycasting for dynamic player tracking and chase behavior.<br />
+            - Designed syringe collection system boosting player speed, light radius, with interactive UI feedback.<br />
+            - Created escape mechanic triggered by collecting all syringes and unlocking the exit.<br />
+            - Added timer and detailed HUD for progress tracking and player feedback.<br />
+            - Integrated audio for suspenseful atmosphere including collection and catching sounds.<br />
+            <strong>Challenges Overcome:</strong> Improved AI line-of-sight during fast movement, balanced speed-scaling, and created clear escape cues.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/SyringeSprinter" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/syringe-sprinter" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
+      <!-- Turtle Golf -->
+      <div class="project-card">
+        <img class="project-image" src="Images/Turtle Golf.png" alt="Turtle Golf Game Image" />
+        <div class="project-content">
+          <div class="project-title">Turtle Golf</div>
+          <div class="project-skills">Physics Puzzle • Buoyancy Mechanics • Unity</div>
+          <div class="project-desc">
+            Control a turtle navigating puddles by dropping rocks to create ripples, manipulating water levels to solve puzzles.<br />
+            <strong>Key Gameplay Engineer Contributions:</strong><br />
+            - Developed buoyancy systems for realistic turtle movement adapting to water levels.<br />
+            - Implemented ripple effects triggered by rocks that influence the environment and puzzles.<br />
+            - Designed multiple water zones with unique mechanics and interactive gameplay triggers.<br />
+            - Created UI controls including sliders for precise rock placement.<br />
+            - Integrated smooth physics collision handling for interactive environment elements.<br />
+            <strong>Challenges Overcome:</strong> Developed dynamic ripple force calculations, responsive buoyancy adjustments, and diverse puzzle design with strategic player challenges.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AfterTheRainGames/TurtleGolf" target="_blank">View GitHub</a>
+            <a href="https://aftertheraingames.itch.io/turtle-golf" target="_blank">Play on Itch.io</a>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+<section class="section" id="skills">
+  <h2>Key Skills & Technologies</h2>
+  <div class="skills-list">
+    <div class="skills-tag">Unity (2D & 3D)</div>
+    <div class="skills-tag">C#</div>
+    <div class="skills-tag">Game Jam Prototyping</div>
+    <div class="skills-tag">Physics Systems</div>
+    <div class="skills-tag">AI & Pathfinding</div>
+    <div class="skills-tag">Puzzle & Level Design</div>
+    <div class="skills-tag">UI/UX & Player Feedback</div>
+    <div class="skills-tag">Event-Driven Programming</div>
+    <div class="skills-tag">Audio Integration</div>
+    <div class="skills-tag">Animation Systems</div>
+    <div class="skills-tag">Version Control (Git)</div>
+    <div class="skills-tag">Collaborative Development</div>
+  </div>
+  <p>
+    Experienced in developing and shipping a diverse range of gameplay mechanics under real game jam time constraints. Strengths include rapid prototyping, advanced object interaction systems, player movement and trick systems, custom AI and enemy logic, physics-based puzzles, puzzle and quest scripting, and crafting satisfying, dynamic gameplay experiences. Always focused on end-to-end game feel, accessibility, and delivering polished, intuitive experiences.
+  </p>
+</section>
 
-    <div class="contact">
-        <h2>Contact Me</h2>
-        <p>atrgames.contact@gmail.com</p>
-    </div>
+<section class="section" id="about">
+  <h2>About Me</h2>
+  <p>
+    I am a gameplay engineer with a passion for designing and delivering games that feel responsive, rewarding, and innovative. My portfolio spans first-person puzzles, action platformers, physics-based prototypes, skateboarding titles, AI-driven stealth, and rapid-fire game jam projects. My role always centers on "making it fun to play": from robust player controls and memorable puzzles to compelling feedback, events, and polish.<br><br>
+    Comfortable scripting complex interactions, prototyping systems on tight deadlines, and collaborating with multidisciplinary teams. I thrive when blending code, game feel, and creativity to solve new gameplay problems—whether making a tiny turtle ripple across puddles, animating skateboard flips, or building dynamic puzzles and AI chases. Always eager to learn and push gameplay design further, rain or shine.
+  </p>
+</section>
 
-    <script>
-        // Scroll navigation
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            section.scrollIntoView({behavior:'smooth', block:'center'});
-        }
 
-        // Rain background
-        document.addEventListener('DOMContentLoaded', () => {
-            const canvas = document.getElementById('rainCanvas');
-            const ctx = canvas.getContext('2d');
-            let mouseX = 0, mouseY = 0;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function createRaindrop(x, y) {
-                return { x, y, speed: 0.5 + Math.random(), radius: 2 + Math.random() * 2 };
-            }
-
-            const raindrops = Array.from({length: 500}, () => createRaindrop(Math.random()*canvas.width, Math.random()*canvas.height));
-
-            function updateRaindrops() {
-                raindrops.forEach(r => {
-                    r.y += r.speed;
-                    if (r.y > canvas.height) { r.y = -r.radius; r.x = Math.random()*canvas.width; }
-                    const dist = Math.hypot(r.x - mouseX, r.y - mouseY);
-                    if (dist < 30) {
-                        const angle = Math.atan2(r.y - mouseY, r.x - mouseX);
-                        r.x += Math.cos(angle)*5; r.y += Math.sin(angle)*5;
-                    }
-                });
-            }
-
-            function drawRaindrops() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(174,194,224,0.5)';
-                raindrops.forEach(r => {
-                    ctx.beginPath();
-                    ctx.arc(r.x, r.y, r.radius, 0, Math.PI*2);
-                    ctx.fill();
-                });
-            }
-
-            function animate() {
-                updateRaindrops();
-                drawRaindrops();
-                requestAnimationFrame(animate);
-            }
-
-            animate();
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>
+      Available for opportunities and collaboration.<br />
+      Email: <a href="mailto:rainy@site.com" style="color: var(--accent);">rainy@site.com</a><br />
+      LinkedIn: <a href="#" style="color: var(--accent);">Profile</a>
+    </p>
+  </section>
+  <footer>
+    &copy; 2025 Rainy Games Portfolio. All rights reserved.
+  </footer>
+  <script>
+    // Raindrop animation using Canvas
+    const canvas = document.getElementById("rain-canvas");
+    const ctx = canvas.getContext("2d");
+    let drops = [];
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    function createDrops() {
+      drops = [];
+      for (let i = 0; i < Math.floor(window.innerWidth / 15); i++) {
+        drops.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          length: 14 + Math.random() * 18,
+          speed: 3 + Math.random() * 4,
+          opacity: 0.13 + Math.random() * 0.22,
+          width: 2 + Math.random() * 2,
         });
-    </script>
+      }
+    }
+    createDrops();
+    window.addEventListener("resize", createDrops);
+    function drawRain() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const d of drops) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(160,216,239,${d.opacity})`;
+        ctx.lineWidth = d.width;
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.length);
+        ctx.stroke();
+        d.y += d.speed;
+        if (d.y > canvas.height) {
+          d.y = 0 - d.length;
+          d.x = Math.random() * canvas.width;
+          d.speed = 3 + Math.random() * 4;
+        }
+      }
+      requestAnimationFrame(drawRain);
+    }
+    drawRain();
+  </script>
 </body>
 </html>
